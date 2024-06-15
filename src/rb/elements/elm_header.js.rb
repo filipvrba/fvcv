@@ -2,8 +2,9 @@ export default class ElmHeader < HTMLElement
   def initialize
     super
     
-    @title = document.title
+    window.TITLE_APP = document.title
     @sections = self.get_attribute('sections')
+    @logo = self.get_attribute('logo')
 
     init_elm()
 
@@ -19,8 +20,8 @@ export default class ElmHeader < HTMLElement
 <nav class='navbar navbar-expand-lg'>
   <div class='container'>
     <a class='navbar-brand' href='#' onclick='headerHide()'>
-      <img src='/png/logo_pivnice-256x256.png' alt='#{@title}' style='height: 64px;'>
-      #{@title}
+      <img class='img-radius' src='#{@logo}' alt='#{TITLE_APP}' style='height: 64px;'>
+      #{TITLE_APP}
     </a>
     <button class='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
       <span class='navbar-toggler-icon'></span>
