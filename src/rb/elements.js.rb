@@ -7,3 +7,6 @@ window.custom_elements.define('elm-header', ElmHeader)
 
 import 'ElmFooter', './elements/elm_footer'
 window.custom_elements.define('elm-footer', ElmFooter)
+
+import 'ElmLazyImageTest', './elements/elm_lazy_image_test'
+window.custom_elements.define('elm-lazy-image-test', ElmLazyImageTest)
