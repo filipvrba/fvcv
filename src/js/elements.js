@@ -5,4 +5,6 @@ window.customElements.define("elm-header", ElmHeader);
 import ElmFooter from "./elements/elm_footer";
 window.customElements.define("elm-footer", ElmFooter);
 import ElmLazyImageTest from "./elements/elm_lazy_image_test";
-window.customElements.define("elm-lazy-image-test", ElmLazyImageTest)
+window.customElements.define("elm-lazy-image-test", ElmLazyImageTest);
+import ElmProjects from "./elements/elm_projects";
+window.customElements.define("elm-projects", ElmProjects)
