@@ -28,4 +28,6 @@ window.customElements.define("elm-alert", ElmAlert);
 import ElmAdminVideos from "./elements/elm_admin_videos";
 window.customElements.define("elm-admin-videos", ElmAdminVideos);
 import ElmContacts from "./elements/elm_contacts";
-window.customElements.define("elm-contacts", ElmContacts)
+window.customElements.define("elm-contacts", ElmContacts);
+import ElmAdminContacts from "./elements/elm_admin_contacts";
+window.customElements.define("elm-admin-contacts", ElmAdminContacts)

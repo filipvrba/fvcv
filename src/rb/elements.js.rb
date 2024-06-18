@@ -37,3 +37,6 @@ window.custom_elements.define('elm-admin-videos', ElmAdminVideos)
 
 import 'ElmContacts', './elements/elm_contacts'
 window.custom_elements.define('elm-contacts', ElmContacts)
+
+import 'ElmAdminContacts', './elements/elm_admin_contacts'
+window.custom_elements.define('elm-admin-contacts', ElmAdminContacts)
