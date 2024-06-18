@@ -10,7 +10,7 @@ export default class ElmSpinner < HTMLElement
   def init_elm()
     template = """
 <div class='#{@class_attr}'>
-  <div class='spinner-border text-warning' role='status'>
+  <div class='spinner-border text-secondary' role='status'>
     <span class='visually-hidden'>Loading...</span>
   </div>
 </div>

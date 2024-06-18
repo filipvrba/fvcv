@@ -9,6 +9,16 @@
         "title": "Úvod",
         "endpoint": "uvod",
         "priority": 10
+      },
+      {
+        "title": "Admin",
+        "endpoint": "admin",
+        "priority": 2
+      },
+      {
+        "title": "Videa",
+        "endpoint": "videa",
+        "priority": 1
       }
     ]
   }

@@ -8,7 +8,7 @@ export default class ElmSpinner extends HTMLElement {
   initElm() {
     let template = `${`
 <div class='${this._classAttr}'>
-  <div class='spinner-border text-warning' role='status'>
+  <div class='spinner-border text-secondary' role='status'>
     <span class='visually-hidden'>Loading...</span>
   </div>
 </div>

@@ -7,4 +7,23 @@ window.customElements.define("elm-footer", ElmFooter);
 import ElmLazyImageTest from "./elements/elm_lazy_image_test";
 window.customElements.define("elm-lazy-image-test", ElmLazyImageTest);
 import ElmProjects from "./elements/elm_projects";
-window.customElements.define("elm-projects", ElmProjects)
+window.customElements.define("elm-projects", ElmProjects);
+import ElmVideos from "./elements/elm_videos";
+window.customElements.define("elm-videos", ElmVideos);
+import ElmAdmin from "./elements/elm_admin";
+window.customElements.define("elm-admin", ElmAdmin);
+import ElmAdminLogin from "./elements/elm_admin_login";
+window.customElements.define("elm-admin-login", ElmAdminLogin);
+import ElmAdminDashboard from "./elements/elm_admin_dashboard";
+
+window.customElements.define(
+  "elm-admin-dashboard",
+  ElmAdminDashboard
+);
+
+import ElmAdminProfile from "./elements/elm_admin_profile";
+window.customElements.define("elm-admin-profile", ElmAdminProfile);
+import ElmAlert from "./elements/elm_alert";
+window.customElements.define("elm-alert", ElmAlert);
+import ElmAdminVideos from "./elements/elm_admin_videos";
+window.customElements.define("elm-admin-videos", ElmAdminVideos)
