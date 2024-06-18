@@ -28,5 +28,10 @@
       "name": "GitHub",
       "dom": "<a href='URL' target='_blank'>github.com/USERNAME</a>",
       "icon": "bi-github"
+    },
+    "youtube": {
+      "name": "Youtube",
+      "dom": "<a href='URL' target='_blank'>youtube.com/USERNAME</a>",
+      "icon": "bi-youtube"
     }
 }

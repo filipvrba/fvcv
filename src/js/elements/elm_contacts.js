@@ -7,7 +7,7 @@ export default class ElmContacts extends HTMLElement {
     this.innerHTML = "<elm-spinner class='text-center mt-5 mb-5'></elm-spinner>";
 
     _BefDb.get(
-      `SELECT phone, email, facebook, reddit, linkedin, github FROM contacts WHERE user_id = ${ElmAdmin.LOGIN_ID};`,
+      `SELECT phone, email, facebook, reddit, linkedin, github, youtube FROM contacts WHERE user_id = ${ElmAdmin.LOGIN_ID};`,
 
       (rows) => {
         let data = rows[0];

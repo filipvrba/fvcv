@@ -7,7 +7,7 @@ export default class ElmContacts < HTMLElement
     
     self.innerHTML = "<elm-spinner class='text-center mt-5 mb-5'></elm-spinner>"
 
-    __bef_db.get("SELECT phone, email, facebook, reddit, linkedin, github " +
+    __bef_db.get("SELECT phone, email, facebook, reddit, linkedin, github, youtube " +
                  "FROM contacts WHERE user_id = #{ElmAdmin::LOGIN_ID};") do |rows|
       data = rows[0]
       init_elm(data)
