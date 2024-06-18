@@ -34,3 +34,6 @@ window.custom_elements.define('elm-alert', ElmAlert)
 
 import 'ElmAdminVideos', './elements/elm_admin_videos'
 window.custom_elements.define('elm-admin-videos', ElmAdminVideos)
+
+import 'ElmContacts', './elements/elm_contacts'
+window.custom_elements.define('elm-contacts', ElmContacts)

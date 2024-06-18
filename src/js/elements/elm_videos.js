@@ -35,10 +35,10 @@ export default class ElmVideos extends HTMLElement {
 
   initElm(videos) {
     let template = `${`
-<table class='table'>
+<table class='table table-striped'>
   <thead>
     <tr>
-      <th scope='col'>#</th>
+      <th scope='col'></th>
       <th scope='col'>Název</th>
       <th scope='col'>Kategorie</th>
     </tr>

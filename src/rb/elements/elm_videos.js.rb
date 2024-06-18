@@ -30,10 +30,10 @@ export default class ElmVideos < HTMLElement
 
   def init_elm(videos)
     template = """
-<table class='table'>
+<table class='table table-striped'>
   <thead>
     <tr>
-      <th scope='col'>#</th>
+      <th scope='col'></th>
       <th scope='col'>Název</th>
       <th scope='col'>Kategorie</th>
     </tr>

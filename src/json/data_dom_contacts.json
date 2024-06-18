@@ -1,0 +1,32 @@
+{
+    "telephone": {
+      "name": "Telefon",
+      "dom": "",
+      "icon": "bi-telephone-fill"
+    },
+    "email": {
+      "name": "Email",
+      "dom": "",
+      "icon": "bi-envelope-fill"
+    },
+    "facebook": {
+      "name": "Facebook",
+      "dom": "<a href='URL' target='_blank'>facebook.com/USERNAME</a>",
+      "icon": "bi-facebook"
+    },
+    "reddit": {
+      "name": "Reddit",
+      "dom": "<a href='URL' target='_blank'>reddit.com/user/USERNAME</a>",
+      "icon": "bi-reddit"
+    },
+    "linkedin": {
+      "name": "LinkedIn",
+      "dom": "<a href='URL' target='_blank'>linkedin.com/in/USERNAME</a>",
+      "icon": "bi-linkedin"
+    },
+    "github": {
+      "name": "GitHub",
+      "dom": "<a href='URL' target='_blank'>github.com/USERNAME</a>",
+      "icon": "bi-github"
+    }
+}

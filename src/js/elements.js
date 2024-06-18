@@ -26,4 +26,6 @@ window.customElements.define("elm-admin-profile", ElmAdminProfile);
 import ElmAlert from "./elements/elm_alert";
 window.customElements.define("elm-alert", ElmAlert);
 import ElmAdminVideos from "./elements/elm_admin_videos";
-window.customElements.define("elm-admin-videos", ElmAdminVideos)
+window.customElements.define("elm-admin-videos", ElmAdminVideos);
+import ElmContacts from "./elements/elm_contacts";
+window.customElements.define("elm-contacts", ElmContacts)
