@@ -2,7 +2,9 @@ export default class ElmLazyImageTest extends HTMLElement {
   constructor() {
     super();
     this._hLoadLargeImage = () => this._container.classList.add("loaded");
-    this._src = this.getAttribute("src");
+    let srcSplit = this.getAttribute("src").split(" ");
+    let randomIndex = srcSplit.length.randomRange();
+    this._src = srcSplit[randomIndex];
     this._srcSmall = this._src.replace(/\..*$/m, "-small$&");
     this.initElm();
     this._container = document.querySelector(".image-container");

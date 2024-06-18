@@ -2,6 +2,8 @@ export default class ElmProjects < HTMLElement
   def initialize
     super
     
+    self.innerHTML = "<elm-spinner class='text-center mt-5 mb-5'></elm-spinner>"
+
     get_repos() do |repos|
       init_elm(repos)
     end

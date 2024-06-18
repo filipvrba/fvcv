@@ -1,6 +1,7 @@
 export default class ElmProjects extends HTMLElement {
   constructor() {
     super();
+    this.innerHTML = "<elm-spinner class='text-center mt-5 mb-5'></elm-spinner>";
     this.getRepos(repos => this.initElm(repos))
   };
 

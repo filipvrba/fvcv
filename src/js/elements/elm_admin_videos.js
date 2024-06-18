@@ -11,7 +11,7 @@ export default class ElmAdminVideos extends HTMLElement {
 
       (rows) => {
         let data = rows[0].video_data;
-        let dataDecode = data.decodePrettyJson();
+        let dataDecode = data.decodePrettyJson(1);
         return this.initElm(dataDecode)
       }
     );

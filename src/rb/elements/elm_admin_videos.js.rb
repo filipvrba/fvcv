@@ -9,7 +9,7 @@ export default class ElmAdminVideos < HTMLElement
 
     __bef_db.get("SELECT video_data FROM videos WHERE user_id = #{ElmAdmin::LOGIN_ID};") do |rows|
       data = rows[0]['video_data']
-      data_decode = data.decode_pretty_json()
+      data_decode = data.decode_pretty_json(1)
       init_elm(data_decode)
     end
 

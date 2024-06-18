@@ -4,7 +4,10 @@ export default class ElmLazyImageTest < HTMLElement
 
     @h_load_large_image = lambda { @container.class_list.add('loaded') }
     
-    @src = self.get_attribute('src')
+    src_split = self.get_attribute('src').split(' ')
+    random_index = src_split.length.random_range()
+
+    @src       = src_split[random_index]
     @src_small = @src.sub(/\..*$/, "-small$&")
 
     init_elm()
