@@ -7,11 +7,13 @@ import 'uvodHTML', '../../html/uvod.html?raw'
 import 'videaHTML', '../../html/videa.html?raw'
 import 'adminHTML', '../../html/admin.html?raw'
 import 'kontaktyHTML', '../../html/kontakty.html?raw'
+import 'galerieHTML', '../../html/galerie.html?raw'
 
 window.PAGES = {
   error: errorHTML,
   uvod: uvodHTML,
   videa: videaHTML,
   admin: adminHTML,
-  kontakty: kontaktyHTML
+  kontakty: kontaktyHTML,
+  galerie: galerieHTML
 }

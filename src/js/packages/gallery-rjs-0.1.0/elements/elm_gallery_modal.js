@@ -41,7 +41,7 @@ export default class ElmGalleryModal extends HTMLElement {
         <h1 id='modal-title' class='modal-title fs-5'></h1>
         <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
       </div>
-      <div class='modal-body'>        
+      <div class='modal-body d-flex justify-content-center align-items-center'>        
         <img src='' id='modal-image' class='img-fluid'>
         <button class='carousel-control-prev' type='button' onclick='modalBtnPrevClick()'>
           <span class='carousel-control-prev-icon' aria-hidden='true'></span>

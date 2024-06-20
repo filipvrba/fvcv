@@ -1,0 +1,24 @@
+{
+    "gallery": [
+        {
+            "name": "Dotazování se přednášejícího na několik otázek",
+            "picture": "/jpg/gallery/fv_01.jpg"
+        },
+        {
+            "name": "Obědová přestávka s lektorem JavaScriptu",
+            "picture": "/jpg/gallery/fv_02.jpg"
+        },
+        {
+            "name": "Zamyšlení nad kódem při tvorbě hry",
+            "picture": "/jpg/gallery/fv_05.jpg"
+        },
+        {
+            "name": "Pomáhám odstraňovat několik chyb ve hře v Unity editoru",
+            "picture": "/jpg/gallery/fv_03.jpg"
+        },
+        {
+            "name": "Setkání s přáteli v restauraci",
+            "picture": "/jpg/gallery/fv_04.jpg"
+        }
+    ]
+}
