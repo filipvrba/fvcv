@@ -1,7 +1,7 @@
 export default class ElmHeader extends HTMLElement {
   constructor() {
     super();
-    window.TITLE_APP = document.title;
+    window.TITLE_APP = document.title.split("-")[0].trim();
     this._sections = this.getAttribute("sections");
     this._logo = this.getAttribute("logo");
     this.initElm();

@@ -2,7 +2,7 @@ export default class ElmHeader < HTMLElement
   def initialize
     super
     
-    window.TITLE_APP = document.title
+    window.TITLE_APP = document.title.split('-')[0].strip
     @sections = self.get_attribute('sections')
     @logo = self.get_attribute('logo')
 

@@ -15,5 +15,5 @@ window.PAGES = {
   videa: videaHTML,
   admin: adminHTML,
   kontakty: kontaktyHTML,
-  galerie: galerieHTML
+  galerie: galerieHTML,
 }
