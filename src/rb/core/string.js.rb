@@ -32,3 +32,15 @@ def encode_pretty_json()
 end
 
 String.prototype.encode_pretty_json = encode_pretty_json
+
+def to_date()
+  date = Date.new(self)
+  s_iso_date = date.toISOString().replace(/T.*$/, '').split('-')
+  day = s_iso_date[2]
+  month = s_iso_date[1]
+  year = s_iso_date[0]
+  
+  return "#{day}. #{month}. #{year}"
+end
+
+String.prototype.to_date = to_date

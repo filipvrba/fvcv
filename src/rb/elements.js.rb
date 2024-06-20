@@ -40,3 +40,9 @@ window.custom_elements.define('elm-contacts', ElmContacts)
 
 import 'ElmAdminContacts', './elements/elm_admin_contacts'
 window.custom_elements.define('elm-admin-contacts', ElmAdminContacts)
+
+import 'ElmDetailedProjects', './elements/elm_detailed_projects'
+window.custom_elements.define('elm-detailed-projects', ElmDetailedProjects)
+
+import 'ElmGithubProjects', './elements/elm_github_projects'
+window.custom_elements.define('elm-github-projects', ElmGithubProjects)

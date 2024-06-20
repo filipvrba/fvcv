@@ -29,6 +29,11 @@
         "title": "Galerie",
         "endpoint": "galerie",
         "priority": 1
+      },
+      {
+        "title": "Projekty",
+        "endpoint": "projekty",
+        "priority": 1
       }
     ]
   }

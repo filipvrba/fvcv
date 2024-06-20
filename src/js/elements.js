@@ -30,4 +30,17 @@ window.customElements.define("elm-admin-videos", ElmAdminVideos);
 import ElmContacts from "./elements/elm_contacts";
 window.customElements.define("elm-contacts", ElmContacts);
 import ElmAdminContacts from "./elements/elm_admin_contacts";
-window.customElements.define("elm-admin-contacts", ElmAdminContacts)
+window.customElements.define("elm-admin-contacts", ElmAdminContacts);
+import ElmDetailedProjects from "./elements/elm_detailed_projects";
+
+window.customElements.define(
+  "elm-detailed-projects",
+  ElmDetailedProjects
+);
+
+import ElmGithubProjects from "./elements/elm_github_projects";
+
+window.customElements.define(
+  "elm-github-projects",
+  ElmGithubProjects
+)

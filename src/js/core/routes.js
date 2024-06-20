@@ -6,6 +6,7 @@ import videaHTML from "../../html/videa.html?raw";
 import adminHTML from "../../html/admin.html?raw";
 import kontaktyHTML from "../../html/kontakty.html?raw";
 import galerieHTML from "../../html/galerie.html?raw";
+import projektyHTML from "../../html/projekty.html?raw";
 
 window.PAGES = {
   error: errorHTML,
@@ -13,5 +14,6 @@ window.PAGES = {
   videa: videaHTML,
   admin: adminHTML,
   kontakty: kontaktyHTML,
-  galerie: galerieHTML
+  galerie: galerieHTML,
+  projekty: projektyHTML
 }

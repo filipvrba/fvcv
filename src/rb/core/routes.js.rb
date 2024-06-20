@@ -8,6 +8,7 @@ import 'videaHTML', '../../html/videa.html?raw'
 import 'adminHTML', '../../html/admin.html?raw'
 import 'kontaktyHTML', '../../html/kontakty.html?raw'
 import 'galerieHTML', '../../html/galerie.html?raw'
+import 'projektyHTML', '../../html/projekty.html?raw'
 
 window.PAGES = {
   error: errorHTML,
@@ -16,4 +17,5 @@ window.PAGES = {
   admin: adminHTML,
   kontakty: kontaktyHTML,
   galerie: galerieHTML,
+  projekty: projektyHTML,
 }

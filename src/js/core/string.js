@@ -28,4 +28,15 @@ function encodePrettyJson() {
   return CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse(jsonStr))
 };
 
-String.prototype.encodePrettyJson = encodePrettyJson
+String.prototype.encodePrettyJson = encodePrettyJson;
+
+function toDate() {
+  let date = new Date(this);
+  let sIsoDate = date.toISOString().replace(/T.*$/m, "").split("-");
+  let day = sIsoDate[2];
+  let month = sIsoDate[1];
+  let year = sIsoDate[0];
+  return `${day}. ${month}. ${year}`
+};
+
+String.prototype.toDate = toDate
