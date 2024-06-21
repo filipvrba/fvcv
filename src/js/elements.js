@@ -43,4 +43,7 @@ import ElmGithubProjects from "./elements/elm_github_projects";
 window.customElements.define(
   "elm-github-projects",
   ElmGithubProjects
-)
+);
+
+import ElmAdminImages from "./elements/elm_admin_images";
+window.customElements.define("elm-admin-images", ElmAdminImages)

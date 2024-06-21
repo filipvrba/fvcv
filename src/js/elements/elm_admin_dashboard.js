@@ -22,9 +22,9 @@ export default class ElmAdminDashboard extends HTMLElement {
     let paramIndex = URLParams.getIndex(ElmAdminDashboard.PARAMETER);
 
     if (index === paramIndex) {
-      return {nav: "active", content: "active show"}
+      return {nav: "active", content: "active show", index}
     } else {
-      return {nav: "", content: ""}
+      return {nav: "", content: "", index}
     }
   };
 
@@ -32,6 +32,7 @@ export default class ElmAdminDashboard extends HTMLElement {
     let profileClass = this.activeNavs(0);
     let videosClass = this.activeNavs(1);
     let contactsClass = this.activeNavs(2);
+    let imagesClass = this.activeNavs(3);
     let template = `${`
 <div class='mx-auto'>
   <div class='col-md-8 mx-auto'>
@@ -39,9 +40,11 @@ export default class ElmAdminDashboard extends HTMLElement {
 
     <nav>
       <div class='nav nav-tabs mb-3 justify-content-center' id='nav-tab' role='tablist'>
-        <button class='nav-link ${profileClass.nav}' onclick='adminDashboardBtnClick(0)' id='nav-profile-tab' data-bs-toggle='tab' data-bs-target='#nav-profile' type='button' role='tab' aria-controls='nav-profile' aria-selected='false' tabindex='-1'>Profil</button>
-        <button class='nav-link ${videosClass.nav}' onclick='adminDashboardBtnClick(1)' id='nav-videos-tab' data-bs-toggle='tab' data-bs-target='#nav-videos' type='button' role='tab' aria-controls='nav-videos' aria-selected='false' tabindex='-1'>Videa</button>
-        <button class='nav-link ${contactsClass.nav}' onclick='adminDashboardBtnClick(2)' id='nav-contacts-tab' data-bs-toggle='tab' data-bs-target='#nav-contacts' type='button' role='tab' aria-controls='nav-contacts' aria-selected='false' tabindex='-1'>Kontakty</button>
+        <button class='nav-link ${profileClass.nav}' onclick='adminDashboardBtnClick(${profileClass.index})' id='nav-profile-tab' data-bs-toggle='tab' data-bs-target='#nav-profile' type='button' role='tab' aria-controls='nav-profile' aria-selected='false' tabindex='-1'>Profil</button>
+        <button class='nav-link ${videosClass.nav}' onclick='adminDashboardBtnClick(${videosClass.index})' id='nav-videos-tab' data-bs-toggle='tab' data-bs-target='#nav-videos' type='button' role='tab' aria-controls='nav-videos' aria-selected='false' tabindex='-1'>Videa</button>
+        <button class='nav-link ${contactsClass.nav}' onclick='adminDashboardBtnClick(${contactsClass.index})' id='nav-contacts-tab' data-bs-toggle='tab' data-bs-target='#nav-contacts' type='button' role='tab' aria-controls='nav-contacts' aria-selected='false' tabindex='-1'>Kontakty</button>
+        <button class='nav-link ${imagesClass.nav}' onclick='adminDashboardBtnClick(${imagesClass.index})' id='nav-images-tab' data-bs-toggle='tab' data-bs-target='#nav-images' type='button' role='tab' aria-controls='nav-images' aria-selected='false' tabindex='-1'>Obrázky</button>
+
       </div>
     </nav>
   </div>
@@ -54,6 +57,9 @@ export default class ElmAdminDashboard extends HTMLElement {
     </div>
     <div class='tab-pane fade ${contactsClass.content} col-md-8 mx-auto' id='nav-contacts' role='tabpanel' aria-labelledby='nav-contacts-tab'>
       <elm-admin-contacts></elm-admin-contacts>
+    </div>
+    <div class='tab-pane fade ${imagesClass.content} col-md-8 mx-auto' id='nav-images' role='tabpanel' aria-labelledby='nav-images-tab'>
+      <elm-admin-images></elm-admin-images>
     </div>
   </div>
 </div>

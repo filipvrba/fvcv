@@ -39,4 +39,14 @@ function toDate() {
   return `${day}. ${month}. ${year}`
 };
 
-String.prototype.toDate = toDate
+String.prototype.toDate = toDate;
+
+function sizeInKb() {
+  let encoder = new TextEncoder;
+  let encodedString = encoder.encode(this);
+  let byteLength = encodedString.length;
+  let sizeKb = byteLength / 1_024;
+  return Math.ceil(sizeKb)
+};
+
+String.prototype.sizeInKb = sizeInKb

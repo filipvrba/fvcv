@@ -46,3 +46,6 @@ window.custom_elements.define('elm-detailed-projects', ElmDetailedProjects)
 
 import 'ElmGithubProjects', './elements/elm_github_projects'
 window.custom_elements.define('elm-github-projects', ElmGithubProjects)
+
+import 'ElmAdminImages', './elements/elm_admin_images'
+window.custom_elements.define('elm-admin-images', ElmAdminImages)

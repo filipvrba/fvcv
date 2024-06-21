@@ -44,3 +44,14 @@ def to_date()
 end
 
 String.prototype.to_date = to_date
+
+def size_in_kb()
+  encoder = TextEncoder.new
+  encoded_string = encoder.encode(self)
+  byte_length = encoded_string.length
+  size_kb = byte_length / 1024
+  
+  return Math.ceil(size_kb)
+end
+
+String.prototype.size_in_kb = size_in_kb
