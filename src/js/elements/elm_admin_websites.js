@@ -7,7 +7,7 @@ export default class ElmAdminWebsites extends HTMLElement {
     this.innerHTML = "<elm-spinner class='text-center mt-5 mb-5'></elm-spinner>";
 
     _BefDb.get(
-      `SELECT user_id, name, description, url, image_id FROM websites WHERE user_id = ${ElmAdmin.LOGIN_ID};`,
+      `SELECT name, description, url, image_id FROM websites WHERE user_id = ${ElmAdmin.LOGIN_ID};`,
       rows => this.initElm(rows)
     );
 
@@ -32,7 +32,7 @@ export default class ElmAdminWebsites extends HTMLElement {
       let symbolEnd = websitesObj.length === (i + 1) ? ";" : ",";
       let nameEncode = row.name.encodeBase64();
       let descriptionEncode = row.description.encodeBase64();
-      let queryRow = `(${row.user_id}, '${nameEncode}', '${descriptionEncode}', '${row.url}', ${row.image_id})${symbolEnd}`;
+      let queryRow = `(${ElmAdmin.LOGIN_ID}, '${nameEncode}', '${descriptionEncode}', '${row.url}', ${row.image_id})${symbolEnd}`;
       return result.push(queryRow)
     });
 

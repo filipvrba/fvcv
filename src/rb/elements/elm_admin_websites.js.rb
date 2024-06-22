@@ -7,7 +7,7 @@ export default class ElmAdminWebsites < HTMLElement
     
     self.innerHTML = "<elm-spinner class='text-center mt-5 mb-5'></elm-spinner>"
 
-    __bef_db.get("SELECT user_id, name, description, url, image_id FROM websites WHERE user_id = #{ElmAdmin::LOGIN_ID};") do |rows|
+    __bef_db.get("SELECT name, description, url, image_id FROM websites WHERE user_id = #{ElmAdmin::LOGIN_ID};") do |rows|
       init_elm(rows)
     end
 
@@ -36,7 +36,7 @@ export default class ElmAdminWebsites < HTMLElement
       name_encode        = row.name.encode_base64()
       description_encode = row.description.encode_base64()
 
-      query_row = "(#{row['user_id']}, '#{name_encode}', '#{description_encode}', " +
+      query_row = "(#{ElmAdmin::LOGIN_ID}, '#{name_encode}', '#{description_encode}', " +
                   "'#{row.url}', #{row['image_id']})#{symbol_end}"
 
       result.push(query_row)
