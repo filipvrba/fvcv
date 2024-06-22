@@ -33,7 +33,9 @@ export default class ElmAdmin < HTMLElement
     template = "<elm-admin-login></elm-admin-login>"
 
     if is_logged_in
-      template = "<elm-admin-dashboard></elm-admin-dashboard>"
+      # Section as an attribute is positional.
+      # If we want to edit its content, please look in the 'admin_sections.json' file.
+      template = "<elm-admin-dashboard sections='images websites videos contacts profile'></elm-admin-dashboard>"
     end
 
     self.innerHTML = template

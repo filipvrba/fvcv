@@ -36,7 +36,13 @@ export default class ElmAdmin extends HTMLElement {
   initElm() {
     let isLoggedIn = Cookie.get("loggedIn") === "true";
     let template = "<elm-admin-login></elm-admin-login>";
-    if (isLoggedIn) template = "<elm-admin-dashboard></elm-admin-dashboard>";
+
+    if (isLoggedIn) {
+      // Section as an attribute is positional.
+      // If we want to edit its content, please look in the 'admin_sections.json' file.
+      template = "<elm-admin-dashboard sections='images websites videos contacts profile'></elm-admin-dashboard>"
+    };
+
     return this.innerHTML = template
   }
 };

@@ -1,0 +1,22 @@
+{
+    "profile": {
+        "name": "Profil",
+        "element": "elm-admin-profile"
+    },
+    "videos": {
+        "name": "Videa",
+        "element": "elm-admin-videos"
+    },
+    "contacts": {
+        "name": "Kontakty",
+        "element": "elm-admin-contacts"
+    },
+    "images": {
+        "name": "Obrázky",
+        "element": "elm-admin-images"
+    },
+    "websites": {
+        "name": "Weby",
+        "element": "elm-admin-websites"
+    }
+}

@@ -1,3 +1,5 @@
+import 'adminSectionsObj', '../../json/admin_sections.json'
+
 export default class ElmAdminDashboard < HTMLElement
   PARAMETER = 'admin-index'
 
@@ -5,6 +7,8 @@ export default class ElmAdminDashboard < HTMLElement
     super
 
     @h_tick = lambda { |e| update(e.detail.value) }
+
+    @sections = self.get_attribute('sections').strip.split(' ')
 
     init_elm()
 
@@ -28,25 +32,42 @@ export default class ElmAdminDashboard < HTMLElement
     if index == param_index
       return {
         nav: 'active',
-        content: 'active show',
-        index: index
+        content: 'active show'
       }
     else
       return {
         nav: '',
-        content: '',
-        index: index
+        content: ''
       }
     end
   end
 
-  def init_elm()
-    profile_class = active_navs(0)
-    videos_class  = active_navs(1)
-    contacts_class  = active_navs(2)
-    images_class  = active_navs(3)
-    websites_class  = active_navs(4)
+  def init_buttons()
+    result = []
+    @sections.each_with_index do |section, i|
+      template = """
+<button class='nav-link #{active_navs(i).nav}' onclick='adminDashboardBtnClick(#{i})' id='nav-#{section}-tab' data-bs-toggle='tab' data-bs-target='#nav-#{section}' type='button' role='tab' aria-controls='nav-#{section}' aria-selected='false' tabindex='-1'>#{admin_sections_obj[section].name}</button>
+      """
+      result.push(template)
+    end
+    return result.join('')
+  end
 
+  def init_tab_elements()
+    result = []
+    @sections.each_with_index do |section, i|
+      element_name = admin_sections_obj[section].element
+      template = """
+<div class='tab-pane fade #{active_navs(i).content} col-md-8 mx-auto' id='nav-#{section}' role='tabpanel' aria-labelledby='nav-#{section}-tab'>
+<#{element_name}></#{element_name}>
+</div>
+      """
+      result.push(template)
+    end
+    return result.join('')
+  end
+
+  def init_elm()
     template = """
 <div class='mx-auto'>
   <div class='col-md-8 mx-auto'>
@@ -54,31 +75,12 @@ export default class ElmAdminDashboard < HTMLElement
 
     <nav>
       <div class='nav nav-tabs mb-3 justify-content-center' id='nav-tab' role='tablist'>
-        <button class='nav-link #{profile_class.nav}' onclick='adminDashboardBtnClick(#{profile_class.index})' id='nav-profile-tab' data-bs-toggle='tab' data-bs-target='#nav-profile' type='button' role='tab' aria-controls='nav-profile' aria-selected='false' tabindex='-1'>Profil</button>
-        <button class='nav-link #{videos_class.nav}' onclick='adminDashboardBtnClick(#{videos_class.index})' id='nav-videos-tab' data-bs-toggle='tab' data-bs-target='#nav-videos' type='button' role='tab' aria-controls='nav-videos' aria-selected='false' tabindex='-1'>Videa</button>
-        <button class='nav-link #{contacts_class.nav}' onclick='adminDashboardBtnClick(#{contacts_class.index})' id='nav-contacts-tab' data-bs-toggle='tab' data-bs-target='#nav-contacts' type='button' role='tab' aria-controls='nav-contacts' aria-selected='false' tabindex='-1'>Kontakty</button>
-        <button class='nav-link #{images_class.nav}' onclick='adminDashboardBtnClick(#{images_class.index})' id='nav-images-tab' data-bs-toggle='tab' data-bs-target='#nav-images' type='button' role='tab' aria-controls='nav-images' aria-selected='false' tabindex='-1'>Obrázky</button>
-        <button class='nav-link #{websites_class.nav}' onclick='adminDashboardBtnClick(#{websites_class.index})' id='nav-websites-tab' data-bs-toggle='tab' data-bs-target='#nav-websites' type='button' role='tab' aria-controls='nav-websites' aria-selected='false' tabindex='-1'>Weby</button>
-
+        #{init_buttons()}
       </div>
     </nav>
   </div>
   <div class='tab-content' id='nav-tabContent'>
-    <div class='tab-pane fade #{profile_class.content} col-md-8 mx-auto' id='nav-profile' role='tabpanel' aria-labelledby='nav-profile-tab'>
-      <elm-admin-profile></elm-admin-profile>
-    </div>
-    <div class='tab-pane fade #{videos_class.content} col-md-8 mx-auto' id='nav-videos' role='tabpanel' aria-labelledby='nav-videos-tab'>
-      <elm-admin-videos></elm-admin-videos>
-    </div>
-    <div class='tab-pane fade #{contacts_class.content} col-md-8 mx-auto' id='nav-contacts' role='tabpanel' aria-labelledby='nav-contacts-tab'>
-      <elm-admin-contacts></elm-admin-contacts>
-    </div>
-    <div class='tab-pane fade #{images_class.content} col-md-8 mx-auto' id='nav-images' role='tabpanel' aria-labelledby='nav-images-tab'>
-      <elm-admin-images></elm-admin-images>
-    </div>
-    <div class='tab-pane fade #{websites_class.content} col-md-8 mx-auto' id='nav-websites' role='tabpanel' aria-labelledby='nav-websites-tab'>
-      <elm-admin-websites></elm-admin-websites>
-    </div>
+    #{init_tab_elements()}
   </div>
 </div>
     """
