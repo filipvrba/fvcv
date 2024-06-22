@@ -3,6 +3,7 @@ import ElmAdmin from "./elm_admin";
 export default class ElmDetailedProjects extends HTMLElement {
   constructor() {
     super();
+    this.innerHTML = "<elm-spinner class='text-center mt-5 mb-5'></elm-spinner>";
 
     _BefDb.get(
       `SELECT websites.name, websites.description, websites.url, images.image_base64 FROM websites JOIN images ON websites.image_id = images.id; WHERE website.user_id = ${ElmAdmin.LOGIN_ID}`,
