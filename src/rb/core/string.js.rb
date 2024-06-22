@@ -33,6 +33,18 @@ end
 
 String.prototype.encode_pretty_json = encode_pretty_json
 
+def decode_base64()
+  CryptoJS.enc.Base64.parse(self).to_string(CryptoJS.enc.Utf8)
+end
+
+String.prototype.decode_base64 = decode_base64
+
+def encode_base64()
+  CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse(self))
+end
+
+String.prototype.encode_base64 = encode_base64
+
 def to_date()
   date = Date.new(self)
   s_iso_date = date.toISOString().replace(/T.*$/, '').split('-')

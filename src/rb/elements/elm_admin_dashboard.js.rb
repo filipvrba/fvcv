@@ -45,6 +45,7 @@ export default class ElmAdminDashboard < HTMLElement
     videos_class  = active_navs(1)
     contacts_class  = active_navs(2)
     images_class  = active_navs(3)
+    websites_class  = active_navs(4)
 
     template = """
 <div class='mx-auto'>
@@ -57,6 +58,7 @@ export default class ElmAdminDashboard < HTMLElement
         <button class='nav-link #{videos_class.nav}' onclick='adminDashboardBtnClick(#{videos_class.index})' id='nav-videos-tab' data-bs-toggle='tab' data-bs-target='#nav-videos' type='button' role='tab' aria-controls='nav-videos' aria-selected='false' tabindex='-1'>Videa</button>
         <button class='nav-link #{contacts_class.nav}' onclick='adminDashboardBtnClick(#{contacts_class.index})' id='nav-contacts-tab' data-bs-toggle='tab' data-bs-target='#nav-contacts' type='button' role='tab' aria-controls='nav-contacts' aria-selected='false' tabindex='-1'>Kontakty</button>
         <button class='nav-link #{images_class.nav}' onclick='adminDashboardBtnClick(#{images_class.index})' id='nav-images-tab' data-bs-toggle='tab' data-bs-target='#nav-images' type='button' role='tab' aria-controls='nav-images' aria-selected='false' tabindex='-1'>Obrázky</button>
+        <button class='nav-link #{websites_class.nav}' onclick='adminDashboardBtnClick(#{websites_class.index})' id='nav-websites-tab' data-bs-toggle='tab' data-bs-target='#nav-websites' type='button' role='tab' aria-controls='nav-websites' aria-selected='false' tabindex='-1'>Weby</button>
 
       </div>
     </nav>
@@ -73,6 +75,9 @@ export default class ElmAdminDashboard < HTMLElement
     </div>
     <div class='tab-pane fade #{images_class.content} col-md-8 mx-auto' id='nav-images' role='tabpanel' aria-labelledby='nav-images-tab'>
       <elm-admin-images></elm-admin-images>
+    </div>
+    <div class='tab-pane fade #{websites_class.content} col-md-8 mx-auto' id='nav-websites' role='tabpanel' aria-labelledby='nav-websites-tab'>
+      <elm-admin-websites></elm-admin-websites>
     </div>
   </div>
 </div>

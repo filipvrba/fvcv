@@ -46,4 +46,6 @@ window.customElements.define(
 );
 
 import ElmAdminImages from "./elements/elm_admin_images";
-window.customElements.define("elm-admin-images", ElmAdminImages)
+window.customElements.define("elm-admin-images", ElmAdminImages);
+import ElmAdminWebsites from "./elements/elm_admin_websites";
+window.customElements.define("elm-admin-websites", ElmAdminWebsites)

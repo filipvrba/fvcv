@@ -1,25 +1,61 @@
-import 'blob', '../../txt/encode_file.txt?raw'
-#<img src='data:image/jpeg;base64,#{blob}'>
+import 'ElmAdmin', './elm_admin'
 
 export default class ElmDetailedProjects < HTMLElement
   def initialize
     super
-    
-    init_elm()
+
+    __bef_db.get("SELECT websites.name, websites.description, websites.url, " +
+                 "images.image_base64 FROM websites JOIN images ON " +
+                 "websites.image_id = images.id; WHERE website.user_id = #{ElmAdmin::LOGIN_ID}") do |rows|
+
+      init_elm(rows)
+    end
   end
 
   def connected_callback()
-    # init_elm()
   end
 
   def disconnected_callback()
   end
 
-  def init_elm()
+  def init_elm(rows)
     template = """
-    
+<div class='row'>
+  #{subinit_elm(rows)}
+</div>
     """
 
     self.innerHTML = template
+  end
+
+  def subinit_elm(rows)
+    results = []
+
+    rows.each do |row|
+      template = """
+<div class='col-md-6 mb-4'>
+  <div class='card h-100'>
+    <img src='#{row['image_base64']}' class='card-img-top' alt='Náhled webové stránky'>
+    <div class='card-body d-flex flex-column'>
+      <h5 class='card-title'>
+        <i class='bi bi-file-earmark-text'></i>
+        #{row.name.decode_base64()}
+      </h5>
+      <p class='card-text'>#{row.description.decode_base64()}</p>
+
+      <div class='mt-auto text-center'>
+        <a href='#{row.url}' target='_blank' class='btn btn-primary card-text'>
+          <i class='bi bi-eye'></i>
+          Podívat se
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+      """
+      results << template
+    end
+
+    return results.join('')
   end
 end
