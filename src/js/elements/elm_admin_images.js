@@ -121,7 +121,7 @@ export default class ElmAdminImages extends HTMLElement {
         <div class='dropdown'>
           <button class='btn btn-primary dropdown-toggle' type='button' data-bs-toggle='dropdown' aria-expanded='false'>
             <i class='bi bi-gear'></i>
-            Nastavení
+            Akce
           </button>
           <ul class='dropdown-menu'>
             <li>
