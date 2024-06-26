@@ -69,12 +69,17 @@ export default class ElmGithubProjects < HTMLElement
           <div class='col-6'>
             <p class='card-text'>
               <small class='text-muted'>
-                <i class='bi bi-tag'></i>
+                <i class='bi bi-star-fill'></i>
+                #{repo.stargazers_count}
+              </small>
+              <br>
+              <small class='text-muted'>
+                <i class='bi bi-tag-fill'></i>
                 #{repo.category}
               </small>
               <br>
               <small class='text-muted'>
-                <i class='bi bi-calendar'></i>
+                <i class='bi bi-calendar-fill'></i>
                 #{repo.created_at}
               </small>
             </p>

@@ -41,9 +41,9 @@ export default class ElmProjects < HTMLElement
 
   def init_elm(repos)
     template = """
-    <ul>
+    <div class='list-group list-group-flush'>
       #{subinit_elm(repos)}
-    </ul>
+    </div>
     """
 
     self.innerHTML = template
@@ -53,9 +53,15 @@ export default class ElmProjects < HTMLElement
     a_repos = []
     repos.each do |repo|
       li_dom = """
-      <li class='lead'>
-        <a href='#{repo.url}' class='navbar-brand' target='_blank'><strong>#{repo.name}</strong></a>
-      </li>
+      <div class='list-group-item d-flex justify-content-between align-items-center'>
+        <a href='#{repo.url}' class='navbar-brand' target='_blank'>
+          <strong class='h5'>#{repo.name}</strong>
+        </a>
+        <span class='d-flex align-items-center'>
+          <i class='bi bi-star-fill me-1'></i>
+          <span>#{repo.stargazers_count}</span>
+        </span>
+      </div>
       """
       a_repos << li_dom
     end

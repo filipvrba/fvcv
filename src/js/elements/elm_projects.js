@@ -37,7 +37,11 @@ export default class ElmProjects extends HTMLElement {
   };
 
   initElm(repos) {
-    let template = `${`\n    <ul>\n      ${this.subinitElm(repos)}\n    </ul>\n    `}`;
+    let template = `${`
+    <div class='list-group list-group-flush'>
+      ${this.subinitElm(repos)}
+    </div>
+    `}`;
     return this.innerHTML = template
   };
 
@@ -46,9 +50,15 @@ export default class ElmProjects extends HTMLElement {
 
     for (let repo of repos) {
       let liDom = `${`
-      <li class='lead'>
-        <a href='${repo.url}' class='navbar-brand' target='_blank'><strong>${repo.name}</strong></a>
-      </li>
+      <div class='list-group-item d-flex justify-content-between align-items-center'>
+        <a href='${repo.url}' class='navbar-brand' target='_blank'>
+          <strong class='h5'>${repo.name}</strong>
+        </a>
+        <span class='d-flex align-items-center'>
+          <i class='bi bi-star-fill me-1'></i>
+          <span>${repo.stargazersCount}</span>
+        </span>
+      </div>
       `}`;
       aRepos.push(liDom)
     };
