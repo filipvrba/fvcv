@@ -49,7 +49,7 @@ export default class ElmGithubProjects extends HTMLElement {
 
     for (let repo of repos) {
       let githubTemplate = `${`
-<div class='col-md-6 mb-4'>
+<div class='col-md-6 col-lg-4 mb-4'>
   <div class='card h-100'>
     <div class='card-body d-flex flex-column'>
       <h5 class='card-title'>

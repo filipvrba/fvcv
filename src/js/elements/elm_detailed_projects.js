@@ -29,7 +29,7 @@ export default class ElmDetailedProjects extends HTMLElement {
 
     for (let row of rows) {
       let template = `${`
-<div class='col-md-6 mb-4'>
+<div class='col-md-6 col-lg-4 mb-4'>
   <div class='card h-100'>
     <img src='${row.image_base64}' class='card-img-top' alt='Náhled webové stránky'>
     <div class='card-body d-flex flex-column'>

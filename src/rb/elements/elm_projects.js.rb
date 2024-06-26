@@ -54,7 +54,7 @@ export default class ElmProjects < HTMLElement
     repos.each do |repo|
       li_dom = """
       <li class='lead'>
-        <a href='#{repo.url}' class='navbar-brand'><strong>#{repo.name}</strong></a>
+        <a href='#{repo.url}' class='navbar-brand' target='_blank'><strong>#{repo.name}</strong></a>
       </li>
       """
       a_repos << li_dom

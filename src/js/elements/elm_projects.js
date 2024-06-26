@@ -47,7 +47,7 @@ export default class ElmProjects extends HTMLElement {
     for (let repo of repos) {
       let liDom = `${`
       <li class='lead'>
-        <a href='${repo.url}' class='navbar-brand'><strong>${repo.name}</strong></a>
+        <a href='${repo.url}' class='navbar-brand' target='_blank'><strong>${repo.name}</strong></a>
       </li>
       `}`;
       aRepos.push(liDom)
