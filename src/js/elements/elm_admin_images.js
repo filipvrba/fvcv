@@ -22,7 +22,7 @@ export default class ElmAdminImages extends HTMLElement {
 
       (rows) => {
         this.spinnerDisplay(false);
-        return this.subinitElm(rows)
+        return this.subinitElm(rows, memoirs => this.memoirsInitElm(memoirs))
       }
     )
   };
@@ -116,7 +116,7 @@ export default class ElmAdminImages extends HTMLElement {
     <tr>
       <th scope='col'></th>
       <th scope='col'>Název</th>
-      <th scope='col'>Velikost</th>
+      <th id='thSize' scope='col'>Velikost</th>
       <th scope='col' class='text-end'>
         <div class='dropdown'>
           <button class='btn btn-primary dropdown-toggle' type='button' data-bs-toggle='dropdown' aria-expanded='false'>
@@ -147,15 +147,17 @@ export default class ElmAdminImages extends HTMLElement {
     return this.innerHTML = template
   };
 
-  subinitElm(rows) {
+  subinitElm(rows, callback) {
     let trsResult = [];
+    let memoryResult = [];
 
     for (let row of rows) {
+      let memory = row.image_base64.sizeInKb();
       let template = `${`
 <tr>
   <th scope='row'>${row.id}</th>
   <td>${row.name}</td>
-  <td>${row.image_base64.sizeInKb()} kB</td>
+  <td>${memory} kB</td>
   <td>
     <div class='d-flex justify-content-center mb-3 form-check'>
       <input type='checkbox' class='form-check-input' id='check${row.id}'>
@@ -164,9 +166,22 @@ export default class ElmAdminImages extends HTMLElement {
   </td>
 </tr>
       `}`;
-      trsResult.push(template)
+      trsResult.push(template);
+      memoryResult.push(memory)
     };
 
+    if (callback) callback(memoryResult);
     return this._imagesTbody.innerHTML = trsResult.join("")
+  };
+
+  memoirsInitElm(memoirs) {
+    let thSize = document.getElementById("thSize");
+
+    let countMemoirs = memoirs.reduce(
+      (accumulator, currentValue) => accumulator + currentValue,
+      0
+    );
+
+    return thSize.innerHTML = `Velikost (${countMemoirs} kB)`
   }
 }

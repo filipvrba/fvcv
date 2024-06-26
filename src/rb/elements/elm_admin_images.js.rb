@@ -25,7 +25,9 @@ export default class ElmAdminImages < HTMLElement
                  "WHERE user_id = #{ElmAdmin::LOGIN_ID};") do |rows|
 
       spinner_display(false)
-      subinit_elm(rows)
+      subinit_elm(rows) do |memoirs|
+        memoirs_init_elm(memoirs)
+      end
     end
   end
 
@@ -112,7 +114,7 @@ export default class ElmAdminImages < HTMLElement
     <tr>
       <th scope='col'></th>
       <th scope='col'>Název</th>
-      <th scope='col'>Velikost</th>
+      <th id='thSize' scope='col'>Velikost</th>
       <th scope='col' class='text-end'>
         <div class='dropdown'>
           <button class='btn btn-primary dropdown-toggle' type='button' data-bs-toggle='dropdown' aria-expanded='false'>
@@ -144,15 +146,17 @@ export default class ElmAdminImages < HTMLElement
     self.innerHTML = template
   end
 
-  def subinit_elm(rows)
-    trs_result = []
+  def subinit_elm(rows, callback)
+    trs_result    = []
+    memory_result = [] 
 
     rows.each do |row|
+      memory   = row['image_base64'].size_in_kb()
       template = """
 <tr>
   <th scope='row'>#{row.id}</th>
   <td>#{row.name}</td>
-  <td>#{row['image_base64'].size_in_kb()} kB</td>
+  <td>#{memory} kB</td>
   <td>
     <div class='d-flex justify-content-center mb-3 form-check'>
       <input type='checkbox' class='form-check-input' id='check#{row.id}'>
@@ -161,9 +165,20 @@ export default class ElmAdminImages < HTMLElement
   </td>
 </tr>
       """
+
       trs_result.push(template)
+      memory_result.push(memory)
     end
 
+    callback(memory_result) if callback
     @images_tbody.innerHTML = trs_result.join('')
+  end
+
+  def memoirs_init_elm(memoirs)
+    th_size = document.get_element_by_id('thSize')
+    count_memoirs = memoirs.reduce(lambda do |accumulator, current_value|
+      accumulator + current_value
+    end, 0)
+    th_size.innerHTML = "Velikost (#{count_memoirs} kB)"
   end
 end
