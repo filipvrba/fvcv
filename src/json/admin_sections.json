@@ -19,8 +19,8 @@
         "name": "Weby",
         "element": "elm-admin-websites"
     },
-    "articles": {
-        "name": "Články",
-        "element": "elm-admin-articles"
+    "blog": {
+        "name": "Blog",
+        "element": "elm-admin-blog"
     }
 }

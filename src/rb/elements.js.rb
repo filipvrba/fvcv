@@ -53,8 +53,11 @@ window.custom_elements.define('elm-admin-images', ElmAdminImages)
 import 'ElmAdminWebsites', './elements/elm_admin_websites'
 window.custom_elements.define('elm-admin-websites', ElmAdminWebsites)
 
-import 'ElmAdminArticles', './elements/elm_admin_articles'
-window.custom_elements.define('elm-admin-articles', ElmAdminArticles)
+import 'ElmAdminArticle', './elements/elm_admin_article'
+window.custom_elements.define('elm-admin-article', ElmAdminArticle)
 
 import 'ElmAdminImagesModal', './elements/elm_admin_images_modal'
 window.custom_elements.define('elm-admin-images-modal', ElmAdminImagesModal)
+
+import 'ElmAdminBlog', './elements/elm_admin_blog'
+window.custom_elements.define('elm-admin-blog', ElmAdminBlog)

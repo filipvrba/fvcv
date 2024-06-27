@@ -49,11 +49,14 @@ import ElmAdminImages from "./elements/elm_admin_images";
 window.customElements.define("elm-admin-images", ElmAdminImages);
 import ElmAdminWebsites from "./elements/elm_admin_websites";
 window.customElements.define("elm-admin-websites", ElmAdminWebsites);
-import ElmAdminArticles from "./elements/elm_admin_articles";
-window.customElements.define("elm-admin-articles", ElmAdminArticles);
+import ElmAdminArticle from "./elements/elm_admin_article";
+window.customElements.define("elm-admin-article", ElmAdminArticle);
 import ElmAdminImagesModal from "./elements/elm_admin_images_modal";
 
 window.customElements.define(
   "elm-admin-images-modal",
   ElmAdminImagesModal
-)
+);
+
+import ElmAdminBlog from "./elements/elm_admin_blog";
+window.customElements.define("elm-admin-blog", ElmAdminBlog)
