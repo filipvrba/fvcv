@@ -7,8 +7,8 @@ export default class ElmAdminArticle < HTMLElement
 
     @id = self.get_attribute('id')
 
-    @h_admin_btn_back_article_click = lambda { |_| admin_btn_back_article_click() }
-    @h_admin_btn_save_article_click = lambda { |_| admin_btn_save_article_click() }
+    window.admin_btn_back_article = admin_btn_back_article_click
+    window.admin_btn_save_article = admin_btn_save_article_click
   end
 
   def connected_callback()
@@ -21,14 +21,9 @@ export default class ElmAdminArticle < HTMLElement
     @btn_save = self.query_selector('#adminBtnSaveArticle')
 
     init_elm_values(@id)
-
-    Events.connect('#adminBtnBackArticle', 'click', @h_admin_btn_back_article_click)
-    Events.connect('#adminBtnSaveArticle', 'click', @h_admin_btn_save_article_click)
   end
 
   def disconnected_callback()
-    Events.disconnect('#adminBtnBackArticle', 'click', @h_admin_btn_back_article_click)
-    Events.disconnect('#adminBtnSaveArticle', 'click', @h_admin_btn_save_article_click)
   end
 
   def admin_btn_back_article_click()
@@ -108,8 +103,8 @@ export default class ElmAdminArticle < HTMLElement
   </div>
 </div>
 <div class='text-center'>
-  <button class='btn btn-success' id='adminBtnSaveArticle'>Uložit</button>
-  <button class='btn btn-secondary' id='adminBtnBackArticle'>Zpět</button>
+  <button class='btn btn-success' id='adminBtnSaveArticle' onclick='adminBtnSaveArticle()'>Uložit</button>
+  <button class='btn btn-secondary' id='adminBtnBackArticle' onclick='adminBtnBackArticle()'>Zpět</button>
 </div>
     """
 

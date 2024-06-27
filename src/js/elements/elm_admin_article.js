@@ -5,14 +5,8 @@ export default class ElmAdminArticle extends HTMLElement {
   constructor() {
     super();
     this._id = this.getAttribute("id");
-
-    this._hAdminBtnBackArticleClick = (_) => {
-      return this.adminBtnBackArticleClick()
-    };
-
-    this._hAdminBtnSaveArticleClick = (_) => {
-      return this.adminBtnSaveArticleClick()
-    }
+    window.adminBtnBackArticle = this.adminBtnBackArticleClick.bind(this);
+    window.adminBtnSaveArticle = this.adminBtnSaveArticleClick.bind(this)
   };
 
   connectedCallback() {
@@ -22,33 +16,11 @@ export default class ElmAdminArticle extends HTMLElement {
     this._title = this.querySelector("#inputArticleTitle");
     this._text = this.querySelector("#inputArticleText");
     this._btnSave = this.querySelector("#adminBtnSaveArticle");
-    this.initElmValues(this._id);
-
-    Events.connect(
-      "#adminBtnBackArticle",
-      "click",
-      this._hAdminBtnBackArticleClick
-    );
-
-    return Events.connect(
-      "#adminBtnSaveArticle",
-      "click",
-      this._hAdminBtnSaveArticleClick
-    )
+    return this.initElmValues(this._id)
   };
 
   disconnectedCallback() {
-    Events.disconnect(
-      "#adminBtnBackArticle",
-      "click",
-      this._hAdminBtnBackArticleClick
-    );
-
-    return Events.disconnect(
-      "#adminBtnSaveArticle",
-      "click",
-      this._hAdminBtnSaveArticleClick
-    )
+    return null
   };
 
   adminBtnBackArticleClick() {
@@ -131,8 +103,8 @@ export default class ElmAdminArticle extends HTMLElement {
   </div>
 </div>
 <div class='text-center'>
-  <button class='btn btn-success' id='adminBtnSaveArticle'>Uložit</button>
-  <button class='btn btn-secondary' id='adminBtnBackArticle'>Zpět</button>
+  <button class='btn btn-success' id='adminBtnSaveArticle' onclick='adminBtnSaveArticle()'>Uložit</button>
+  <button class='btn btn-secondary' id='adminBtnBackArticle' onclick='adminBtnBackArticle()'>Zpět</button>
 </div>
     `}`;
     return template

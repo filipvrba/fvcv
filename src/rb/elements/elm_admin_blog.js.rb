@@ -4,9 +4,6 @@ import 'ElmAlert', './elm_alert'
 export default class ElmAdminBlog < HTMLElement
   def initialize
     super
-
-    @h_dn_btn_article_new    = lambda { |_| dn_btn_article_new_click() }
-    @h_dn_btn_article_remove = lambda { |_| dn_btn_article_remove_click() }
   end
 
   def connected_callback()
@@ -14,17 +11,14 @@ export default class ElmAdminBlog < HTMLElement
     @spinner        = self.query_selector('#spinnerBlog')
     @articles_tbody = self.query_selector('#articlesTBody')
 
-    Events.connect('#dnBtnArticleNew', 'click', @h_dn_btn_article_new)
-    Events.connect('#dnBtnArticleRemove', 'click', @h_dn_btn_article_remove)
-
     window.a_article_title_click = a_article_title_click
+    window.dn_btn_article_new    = dn_btn_article_new_click
+    window.dn_btn_article_remove = dn_btn_article_remove_click
 
     reinit_from_db()
   end
 
   def disconnected_callback()
-    self.query_selector('#dnBtnArticleNew').remove_event_listener('click', @h_dn_btn_article_new)
-    self.query_selector('#dnBtnArticleRemove').remove_event_listener('click', @h_dn_btn_article_remove)
   end
 
   def dn_btn_article_new_click()
@@ -96,10 +90,10 @@ export default class ElmAdminBlog < HTMLElement
           </button>
           <ul class='dropdown-menu'>
             <li>
-              <button id='dnBtnArticleNew' class='dropdown-item'>Nový</button>
+              <button id='dnBtnArticleNew' class='dropdown-item' onclick='dnBtnArticleNew()'>Nový</button>
             </li>
             <li>
-              <button id='dnBtnArticleRemove' class='dropdown-item'>Odebrat</button>
+              <button id='dnBtnArticleRemove' class='dropdown-item' onclick='dnBtnArticleRemove()'>Odebrat</button>
             </li>
           </ul>
         </div>

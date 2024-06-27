@@ -3,43 +3,21 @@ import ElmAlert from "./elm_alert";
 
 export default class ElmAdminBlog extends HTMLElement {
   constructor() {
-    super();
-
-    this._hDnBtnArticleNew = (_) => {
-      return this.dnBtnArticleNewClick()
-    };
-
-    this._hDnBtnArticleRemove = (_) => {
-      return this.dnBtnArticleRemoveClick()
-    }
+    super()
   };
 
   connectedCallback() {
     this.innerHTML = this.initElm();
     this._spinner = this.querySelector("#spinnerBlog");
     this._articlesTbody = this.querySelector("#articlesTBody");
-    Events.connect("#dnBtnArticleNew", "click", this._hDnBtnArticleNew);
-
-    Events.connect(
-      "#dnBtnArticleRemove",
-      "click",
-      this._hDnBtnArticleRemove
-    );
-
     window.aArticleTitleClick = this.aArticleTitleClick.bind(this);
+    window.dnBtnArticleNew = this.dnBtnArticleNewClick.bind(this);
+    window.dnBtnArticleRemove = this.dnBtnArticleRemoveClick.bind(this);
     return this.reinitFromDb()
   };
 
   disconnectedCallback() {
-    this.querySelector("#dnBtnArticleNew").removeEventListener(
-      "click",
-      this._hDnBtnArticleNew
-    );
-
-    return this.querySelector("#dnBtnArticleRemove").removeEventListener(
-      "click",
-      this._hDnBtnArticleRemove
-    )
+    return null
   };
 
   dnBtnArticleNewClick() {
@@ -116,10 +94,10 @@ export default class ElmAdminBlog extends HTMLElement {
           </button>
           <ul class='dropdown-menu'>
             <li>
-              <button id='dnBtnArticleNew' class='dropdown-item'>Nový</button>
+              <button id='dnBtnArticleNew' class='dropdown-item' onclick='dnBtnArticleNew()'>Nový</button>
             </li>
             <li>
-              <button id='dnBtnArticleRemove' class='dropdown-item'>Odebrat</button>
+              <button id='dnBtnArticleRemove' class='dropdown-item' onclick='dnBtnArticleRemove()'>Odebrat</button>
             </li>
           </ul>
         </div>
