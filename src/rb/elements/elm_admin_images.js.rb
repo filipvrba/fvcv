@@ -2,21 +2,16 @@ import 'ElmAdmin', './elm_admin'
 import 'ElmAlert', './elm_alert'
 
 export default class ElmAdminImages < HTMLElement
+  ENVS = {
+    REINIT: 'ai0'
+  }
+
   def initialize
     super
 
     @h_upload_file_input_change = lambda { |e| upload_file_input_change(e) }
 
-    init_elm()
-
-    @upload_file_input = document.get_element_by_id(:upload_file_input)
-    @spinner = document.get_element_by_id('spinner')
-    @images_tbody = document.get_element_by_id('imagesTBody')
-    
-    reinit_from_db()
-
-    window.dropdown_btn_upload_click = dropdown_btn_upload_click
-    window.dropdown_btn_remove_click = dropdown_btn_remove_click
+    @images = nil
   end
 
   def reinit_from_db()
@@ -24,14 +19,29 @@ export default class ElmAdminImages < HTMLElement
     __bef_db.get("SELECT id, name, image_base64 FROM images " +
                  "WHERE user_id = #{ElmAdmin::LOGIN_ID};") do |rows|
 
+      @images = rows
       spinner_display(false)
-      subinit_elm(rows) do |memoirs|
+      subinit_elm(@images) do |memoirs|
         memoirs_init_elm(memoirs)
       end
+
+      Events.emit('#app', ElmAdminImages::ENVS::REINIT)
     end
   end
 
   def connected_callback()
+    self.innerHTML = init_elm()
+
+    @upload_file_input = document.get_element_by_id(:upload_file_input)
+    @spinner = document.get_element_by_id('spinner')
+    @images_tbody = document.get_element_by_id('imagesTBody')
+    @th_size = document.get_element_by_id('thSize')
+    
+    reinit_from_db()
+
+    window.dropdown_btn_upload_click = dropdown_btn_upload_click
+    window.dropdown_btn_remove_click = dropdown_btn_remove_click
+
     @upload_file_input.add_event_listener('change', @h_upload_file_input_change)
   end
 
@@ -142,8 +152,6 @@ export default class ElmAdminImages < HTMLElement
   <elm-spinner class='text-center mt-5 mb-5'></elm-spinner>
 </div>
     """
-
-    self.innerHTML = template
   end
 
   def subinit_elm(rows, callback)
@@ -153,7 +161,7 @@ export default class ElmAdminImages < HTMLElement
     rows.each do |row|
       memory   = row['image_base64'].size_in_kb()
       template = """
-<tr>
+<tr id='trImage'>
   <th scope='row'>#{row.id}</th>
   <td>#{row.name}</td>
   <td>#{memory} kB</td>
@@ -175,10 +183,10 @@ export default class ElmAdminImages < HTMLElement
   end
 
   def memoirs_init_elm(memoirs)
-    th_size = document.get_element_by_id('thSize')
+    
     count_memoirs = memoirs.reduce(lambda do |accumulator, current_value|
       accumulator + current_value
     end, 0)
-    th_size.innerHTML = "Velikost (#{count_memoirs} kB)"
+    @th_size.innerHTML = "Velikost (#{count_memoirs} kB)"
   end
 end

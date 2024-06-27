@@ -13,10 +13,14 @@
     },
     "images": {
         "name": "Obrázky",
-        "element": "elm-admin-images"
+        "element": "elm-admin-images-modal"
     },
     "websites": {
         "name": "Weby",
         "element": "elm-admin-websites"
+    },
+    "articles": {
+        "name": "Články",
+        "element": "elm-admin-articles"
     }
 }

@@ -5,13 +5,7 @@ export default class ElmAdminImages extends HTMLElement {
   constructor() {
     super();
     this._hUploadFileInputChange = e => this.uploadFileInputChange(e);
-    this.initElm();
-    this._uploadFileInput = document.getElementById("uploadFileInput");
-    this._spinner = document.getElementById("spinner");
-    this._imagesTbody = document.getElementById("imagesTBody");
-    this.reinitFromDb();
-    window.dropdownBtnUploadClick = this.dropdownBtnUploadClick.bind(this);
-    window.dropdownBtnRemoveClick = this.dropdownBtnRemoveClick.bind(this)
+    this._images = null
   };
 
   reinitFromDb() {
@@ -21,13 +15,29 @@ export default class ElmAdminImages extends HTMLElement {
       `SELECT id, name, image_base64 FROM images WHERE user_id = ${ElmAdmin.LOGIN_ID};`,
 
       (rows) => {
+        this._images = rows;
         this.spinnerDisplay(false);
-        return this.subinitElm(rows, memoirs => this.memoirsInitElm(memoirs))
+
+        this.subinitElm(
+          this._images,
+          memoirs => this.memoirsInitElm(memoirs)
+        );
+
+        return Events.emit("#app", ElmAdminImages.ENVS.REINIT)
       }
     )
   };
 
   connectedCallback() {
+    this.innerHTML = this.initElm();
+    this._uploadFileInput = document.getElementById("uploadFileInput");
+    this._spinner = document.getElementById("spinner");
+    this._imagesTbody = document.getElementById("imagesTBody");
+    this._thSize = document.getElementById("thSize");
+    this.reinitFromDb();
+    window.dropdownBtnUploadClick = this.dropdownBtnUploadClick.bind(this);
+    window.dropdownBtnRemoveClick = this.dropdownBtnRemoveClick.bind(this);
+
     return this._uploadFileInput.addEventListener(
       "change",
       this._hUploadFileInputChange
@@ -144,7 +154,7 @@ export default class ElmAdminImages extends HTMLElement {
   <elm-spinner class='text-center mt-5 mb-5'></elm-spinner>
 </div>
     `}`;
-    return this.innerHTML = template
+    return template
   };
 
   subinitElm(rows, callback) {
@@ -154,7 +164,7 @@ export default class ElmAdminImages extends HTMLElement {
     for (let row of rows) {
       let memory = row.image_base64.sizeInKb();
       let template = `${`
-<tr>
+<tr id='trImage'>
   <th scope='row'>${row.id}</th>
   <td>${row.name}</td>
   <td>${memory} kB</td>
@@ -175,13 +185,13 @@ export default class ElmAdminImages extends HTMLElement {
   };
 
   memoirsInitElm(memoirs) {
-    let thSize = document.getElementById("thSize");
-
     let countMemoirs = memoirs.reduce(
       (accumulator, currentValue) => accumulator + currentValue,
       0
     );
 
-    return thSize.innerHTML = `Velikost (${countMemoirs} kB)`
+    return this._thSize.innerHTML = `Velikost (${countMemoirs} kB)`
   }
-}
+};
+
+ElmAdminImages.ENVS = {REINIT: "ai0"}

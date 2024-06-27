@@ -5,6 +5,8 @@ export default class ElmGalleryModal < HTMLElement
     super
     @l_gallery_click = lambda { |t| reinit_elm(t.detail.value) }
     @l_popstate = lambda { |e| popstate(e) }
+
+    @is_pagination = self.get_attribute('pagination')
     
     init_elm()
   end
@@ -24,6 +26,21 @@ export default class ElmGalleryModal < HTMLElement
   end
 
   def init_elm()
+    l_pagination = lambda do
+      unless @is_pagination == nil
+        return """
+        <button class='carousel-control-prev' type='button' onclick='modalBtnPrevClick()'>
+          <span class='carousel-control-prev-icon' aria-hidden='true'></span>
+        </button>
+        <button class='carousel-control-next' type='button' onclick='modalBtnNextClick()'>
+          <span class='carousel-control-next-icon' aria-hidden='true'></span>
+        </button>
+        """
+      end
+
+      return ''
+    end
+
     template = """
 <div class='modal fade' id='galleryModal' tabindex='-1' role='dialog' aria-labelledby='galleryModalTitle' aria-hidden='true'>
   <div class='modal-dialog modal-lg modal-dialog-centered' role='document'>
@@ -34,12 +51,7 @@ export default class ElmGalleryModal < HTMLElement
       </div>
       <div class='modal-body d-flex justify-content-center align-items-center'>        
         <img src='' id='modal-image' class='img-fluid'>
-        <button class='carousel-control-prev' type='button' onclick='modalBtnPrevClick()'>
-          <span class='carousel-control-prev-icon' aria-hidden='true'></span>
-        </button>
-        <button class='carousel-control-next' type='button' onclick='modalBtnNextClick()'>
-          <span class='carousel-control-next-icon' aria-hidden='true'></span>
-        </button>
+        #{l_pagination()}
       </div>
     </div>
   </div>

@@ -5,6 +5,7 @@ export default class ElmGalleryModal extends HTMLElement {
     super();
     this._lGalleryClick = t => this.reinitElm(t.detail.value);
     this._lPopstate = e => this.popstate(e);
+    this._isPagination = this.getAttribute("pagination");
     this.initElm()
   };
 
@@ -33,6 +34,21 @@ export default class ElmGalleryModal extends HTMLElement {
   };
 
   initElm() {
+    let lPagination = () => {
+      if (this._isPagination !== null) {
+        return `${`
+        <button class='carousel-control-prev' type='button' onclick='modalBtnPrevClick()'>
+          <span class='carousel-control-prev-icon' aria-hidden='true'></span>
+        </button>
+        <button class='carousel-control-next' type='button' onclick='modalBtnNextClick()'>
+          <span class='carousel-control-next-icon' aria-hidden='true'></span>
+        </button>
+        `}`
+      };
+
+      return ""
+    };
+
     let template = `${`
 <div class='modal fade' id='galleryModal' tabindex='-1' role='dialog' aria-labelledby='galleryModalTitle' aria-hidden='true'>
   <div class='modal-dialog modal-lg modal-dialog-centered' role='document'>
@@ -43,12 +59,7 @@ export default class ElmGalleryModal extends HTMLElement {
       </div>
       <div class='modal-body d-flex justify-content-center align-items-center'>        
         <img src='' id='modal-image' class='img-fluid'>
-        <button class='carousel-control-prev' type='button' onclick='modalBtnPrevClick()'>
-          <span class='carousel-control-prev-icon' aria-hidden='true'></span>
-        </button>
-        <button class='carousel-control-next' type='button' onclick='modalBtnNextClick()'>
-          <span class='carousel-control-next-icon' aria-hidden='true'></span>
-        </button>
+        ${lPagination()}
       </div>
     </div>
   </div>
