@@ -9,6 +9,7 @@ import 'adminHTML', '../../html/admin.html?raw'
 import 'kontaktyHTML', '../../html/kontakty.html?raw'
 import 'galerieHTML', '../../html/galerie.html?raw'
 import 'projektyHTML', '../../html/projekty.html?raw'
+import 'blogHTML', '../../html/blog.html?raw'
 
 window.PAGES = {
   error: errorHTML,
@@ -18,4 +19,5 @@ window.PAGES = {
   kontakty: kontaktyHTML,
   galerie: galerieHTML,
   projekty: projektyHTML,
+  blog: blogHTML,
 }

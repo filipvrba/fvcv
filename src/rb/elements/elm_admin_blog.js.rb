@@ -20,12 +20,11 @@ export default class ElmAdminBlog < HTMLElement
     window.a_article_title_click = a_article_title_click
 
     reinit_from_db()
-    # @h_dn_btn_article_new.call
   end
 
   def disconnected_callback()
-    Events.disconnect('#dnBtnArticleNew', 'click', @h_dn_btn_article_new)
-    Events.disconnect('#dnBtnArticleRemove', 'click', @h_dn_btn_article_remove)
+    self.query_selector('#dnBtnArticleNew').remove_event_listener('click', @h_dn_btn_article_new)
+    self.query_selector('#dnBtnArticleRemove').remove_event_listener('click', @h_dn_btn_article_remove)
   end
 
   def dn_btn_article_new_click()

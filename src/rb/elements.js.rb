@@ -61,3 +61,6 @@ window.custom_elements.define('elm-admin-images-modal', ElmAdminImagesModal)
 
 import 'ElmAdminBlog', './elements/elm_admin_blog'
 window.custom_elements.define('elm-admin-blog', ElmAdminBlog)
+
+import 'ElmBlog', './elements/elm_blog'
+window.custom_elements.define('elm-blog', ElmBlog)

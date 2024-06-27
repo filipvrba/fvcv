@@ -7,6 +7,7 @@ import adminHTML from "../../html/admin.html?raw";
 import kontaktyHTML from "../../html/kontakty.html?raw";
 import galerieHTML from "../../html/galerie.html?raw";
 import projektyHTML from "../../html/projekty.html?raw";
+import blogHTML from "../../html/blog.html?raw";
 
 window.PAGES = {
   error: errorHTML,
@@ -15,5 +16,6 @@ window.PAGES = {
   admin: adminHTML,
   kontakty: kontaktyHTML,
   galerie: galerieHTML,
-  projekty: projektyHTML
+  projekty: projektyHTML,
+  blog: blogHTML
 }

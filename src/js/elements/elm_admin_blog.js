@@ -14,7 +14,6 @@ export default class ElmAdminBlog extends HTMLElement {
     }
   };
 
-  // @h_dn_btn_article_new.call
   connectedCallback() {
     this.innerHTML = this.initElm();
     this._spinner = this.querySelector("#spinnerBlog");
@@ -32,14 +31,12 @@ export default class ElmAdminBlog extends HTMLElement {
   };
 
   disconnectedCallback() {
-    Events.disconnect(
-      "#dnBtnArticleNew",
+    this.querySelector("#dnBtnArticleNew").removeEventListener(
       "click",
       this._hDnBtnArticleNew
     );
 
-    return Events.disconnect(
-      "#dnBtnArticleRemove",
+    return this.querySelector("#dnBtnArticleRemove").removeEventListener(
       "click",
       this._hDnBtnArticleRemove
     )
