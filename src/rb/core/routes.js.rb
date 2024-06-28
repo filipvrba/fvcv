@@ -21,3 +21,31 @@ window.PAGES = {
   projekty: projektyHTML,
   blog: blogHTML,
 }
+
+class Routes
+  def self.set_page_article(page, title, text)
+    PAGES[page] = """
+    <div class='container mt-5'>
+      <header class='text-center mb-4'>
+        <h1>#{title}</h1>
+      </header>
+      <div class='col-lg-8 mx-auto'>
+        #{text.decode_base64().to_md()}
+      </div>
+    </div>
+    """
+  end
+
+  def self.set_routes(page, title)
+    ROUTES_JSON.pages.push({
+      "title": title,
+      "endpoint": page,
+      "priority": 1
+    })
+  end
+
+  def self.get_endpoint_article(id, title)
+    "blog_#{id}_" + title.remove_diacritics().downcase().gsub(' ', '_')
+  end
+end
+window.Routes = Routes

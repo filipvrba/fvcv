@@ -4,7 +4,7 @@ export default class ElmBlog extends HTMLElement {
   constructor() {
     super();
     this.innerHTML = "<elm-spinner class='text-center mt-5 mb-5'></elm-spinner>";
-    let query = `SELECT users.username, images.image_base64, articles.title, articles.text, articles.category, articles.created_at FROM articles JOIN users ON articles.user_id = users.id LEFT JOIN images ON articles.image_id = images.id WHERE articles.user_id = ${ElmAdmin.LOGIN_ID};`;
+    let query = `SELECT articles.id, users.username, images.image_base64, articles.title, articles.text, articles.category, articles.created_at FROM articles JOIN users ON articles.user_id = users.id LEFT JOIN images ON articles.image_id = images.id WHERE articles.user_id = ${ElmAdmin.LOGIN_ID};`;
     _BefDb.get(query, articles => this.initElm(articles))
   };
 
@@ -30,12 +30,12 @@ export default class ElmBlog extends HTMLElement {
 
     for (let article of articles) {
       let title = article.title.decodeBase64();
+      let endpoint = Routes.getEndpointArticle(article.id, title);
 
-      let href = "#blog_" + title.removeDiacritics().toLowerCase().replaceAll(
-        " ",
-        "_"
-      );
+      // unsafe
+      Routes.setPageArticle(endpoint, title, article.text);
 
+      // end
       let template = `${`
 <div class='col-md-6 mb-4'>
   <div class='card h-100'>
@@ -64,7 +64,7 @@ export default class ElmBlog extends HTMLElement {
           </div>
 
           <div class='col-6 text-center'>
-            <a href='${href}' class='btn btn-secondary card-text'>
+            <a href='#${endpoint}' class='btn btn-secondary card-text'>
               <i class='bi bi-eye'></i>
               Podívat se
             </a>

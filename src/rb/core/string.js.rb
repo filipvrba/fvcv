@@ -1,4 +1,5 @@
 import 'CryptoJS', 'crypto-js'
+import 'markdownit', 'markdown-it'
 
 def capitalize()
   str = self
@@ -76,3 +77,9 @@ def max_length(length = 120)
   end
 end
 String.prototype.max_length = max_length
+
+def to_md()
+  md = markdownit()
+  md.render(self)
+end
+String.prototype.to_md = to_md

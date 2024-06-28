@@ -1,4 +1,5 @@
 import CryptoJS from "crypto-js";
+import markdownit from "markdown-it";
 
 function capitalize() {
   let str = this;
@@ -71,4 +72,11 @@ function maxLength(length=120) {
   }
 };
 
-String.prototype.maxLength = maxLength
+String.prototype.maxLength = maxLength;
+
+function toMd() {
+  let md = markdownit();
+  return md.render(this)
+};
+
+String.prototype.toMd = toMd

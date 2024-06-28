@@ -6,7 +6,7 @@ export default class ElmBlog < HTMLElement
     
     self.innerHTML = "<elm-spinner class='text-center mt-5 mb-5'></elm-spinner>"
 
-    query = "SELECT users.username, images.image_base64, articles.title, " +
+    query = "SELECT articles.id, users.username, images.image_base64, articles.title, " +
             "articles.text, articles.category, articles.created_at FROM " +
             "articles JOIN users ON articles.user_id = users.id LEFT JOIN " +
             "images ON articles.image_id = images.id WHERE " +
@@ -37,7 +37,11 @@ export default class ElmBlog < HTMLElement
     result = []
     articles.each do |article|
       title = article.title.decode_base64()
-      href  = "#blog_" + title.remove_diacritics().downcase().gsub(' ', '_')
+      endpoint = Routes.get_endpoint_article(article.id, title)
+
+      # unsafe
+      Routes.set_page_article(endpoint, title, article.text)
+      # end
 
       template = """
 <div class='col-md-6 mb-4'>
@@ -67,7 +71,7 @@ export default class ElmBlog < HTMLElement
           </div>
 
           <div class='col-6 text-center'>
-            <a href='#{href}' class='btn btn-secondary card-text'>
+            <a href='##{endpoint}' class='btn btn-secondary card-text'>
               <i class='bi bi-eye'></i>
               Podívat se
             </a>
