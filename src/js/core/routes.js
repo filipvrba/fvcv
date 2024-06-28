@@ -8,6 +8,7 @@ import kontaktyHTML from "../../html/kontakty.html?raw";
 import galerieHTML from "../../html/galerie.html?raw";
 import projektyHTML from "../../html/projekty.html?raw";
 import blogHTML from "../../html/blog.html?raw";
+import oMneHTML from "../../html/o_mne.html?raw";
 
 window.PAGES = {
   error: errorHTML,
@@ -17,7 +18,8 @@ window.PAGES = {
   kontakty: kontaktyHTML,
   galerie: galerieHTML,
   projekty: projektyHTML,
-  blog: blogHTML
+  blog: blogHTML,
+  o_mne: oMneHTML
 };
 
 class Routes {
@@ -36,7 +38,7 @@ class Routes {
   };
 
   static setRoutes(page, title) {
-    page = {title, endpoint: page, priority: 1};
+    page = {title, endpoint: page, priority: 2};
     let isExist = ROUTES_JSON.pages.some(obj => obj.endpoint === page.endpoint);
     if (!isExist) return ROUTES_JSON.pages.push(page)
   };

@@ -13,7 +13,7 @@
       {
         "title": "Admin",
         "endpoint": "admin",
-        "priority": 2
+        "priority": -1
       },
       {
         "title": "Videa",
@@ -38,6 +38,11 @@
       {
         "title": "Blog",
         "endpoint": "blog",
+        "priority": 1
+      },
+      {
+        "title": "O mně",
+        "endpoint": "o_mne",
         "priority": 1
       }
     ]

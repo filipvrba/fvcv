@@ -10,6 +10,7 @@ import 'kontaktyHTML', '../../html/kontakty.html?raw'
 import 'galerieHTML', '../../html/galerie.html?raw'
 import 'projektyHTML', '../../html/projekty.html?raw'
 import 'blogHTML', '../../html/blog.html?raw'
+import 'oMneHTML', '../../html/o_mne.html?raw'
 
 window.PAGES = {
   error: errorHTML,
@@ -20,6 +21,7 @@ window.PAGES = {
   galerie: galerieHTML,
   projekty: projektyHTML,
   blog: blogHTML,
+  'o_mne' => o_mneHTML,
 }
 
 class Routes
@@ -41,7 +43,7 @@ class Routes
     page = {
       "title": title,
       "endpoint": page,
-      "priority": 1
+      "priority": 2
     }
     is_exist = ROUTES_JSON.pages.some do |obj|
       obj.endpoint == page.endpoint
