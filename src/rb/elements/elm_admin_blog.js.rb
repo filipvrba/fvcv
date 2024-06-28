@@ -70,7 +70,7 @@ export default class ElmAdminBlog < HTMLElement
 
   def reinit_from_db()
     spinner_display(true)
-    __bef_db.get("SELECT id, image_id, title, text, category FROM articles " +
+    __bef_db.get("SELECT id, image_id, title, text, category, created_at FROM articles " +
                  "WHERE user_id = #{ElmAdmin::LOGIN_ID};") do |articles|
       spinner_display(false)
       subinit_elm(articles)
@@ -84,7 +84,13 @@ export default class ElmAdminBlog < HTMLElement
       endpoint = Routes.get_endpoint_article(article.id, title)
 
       Routes.set_routes(endpoint, title)
-      Routes.set_page_article(endpoint, title, article.text)
+      options = {
+        page: endpoint,
+        title: title,
+        text: article.text,
+        date: article['created_at'].to_date(),
+      }
+      Routes.set_page_article(options)
     end
   end
 

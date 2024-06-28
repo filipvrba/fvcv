@@ -23,14 +23,15 @@ window.PAGES = {
 }
 
 class Routes
-  def self.set_page_article(page, title, text)
-    PAGES[page] = """
+  def self.set_page_article(options)
+    PAGES[options.page] = """
     <div class='container mt-5'>
       <header class='text-center mb-4'>
-        <h1>#{title}</h1>
+        <h1>#{options.title}</h1>
+        <p class='text-muted'>Datum: #{options.date}</p>
       </header>
       <div class='col-lg-8 mx-auto'>
-        #{text.decode_base64().to_md()}
+        #{options.text.decode_base64().to_md()}
       </div>
     </div>
     """

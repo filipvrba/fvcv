@@ -8,6 +8,7 @@ import "../css/style.css";
 import "./core";
 import "./third_side";
 import "./elements";
+import ElmAdmin from "./elements/elm_admin";
 
 window.GITHUB_URL = {
   PROFILE: "https://api.github.com/users/filipvrba",
@@ -16,13 +17,22 @@ window.GITHUB_URL = {
 };
 
 window.GALLERY_JSON = {gallery: galleryObj};
+let query = `SELECT id, title, text, created_at FROM articles WHERE user_id = ${ElmAdmin.LOGIN_ID};`;
 
-_BefDb.get("SELECT id, title, text FROM articles;", (articles) => {
+_BefDb.get(query, (articles) => {
   for (let article of articles) {
     let title = article.title.decodeBase64();
     let endpoint = Routes.getEndpointArticle(article.id, title);
     Routes.setRoutes(endpoint, title);
-    Routes.setPageArticle(endpoint, title, article.text)
+
+    let options = {
+      page: endpoint,
+      title,
+      text: article.text,
+      date: article.created_at.toDate()
+    };
+
+    Routes.setPageArticle(options)
   };
 
   return document.querySelector("#app").innerHTML = "<elm-priority-routes></elm-priority-routes>"

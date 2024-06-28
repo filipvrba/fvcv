@@ -21,14 +21,15 @@ window.PAGES = {
 };
 
 class Routes {
-  static setPageArticle(page, title, text) {
-    return PAGES[page] = `${`
+  static setPageArticle(options) {
+    return PAGES[options.page] = `${`
     <div class='container mt-5'>
       <header class='text-center mb-4'>
-        <h1>${title}</h1>
+        <h1>${options.title}</h1>
+        <p class='text-muted'>Datum: ${options.date}</p>
       </header>
       <div class='col-lg-8 mx-auto'>
-        ${text.decodeBase64().toMd()}
+        ${options.text.decodeBase64().toMd()}
       </div>
     </div>
     `}`

@@ -72,7 +72,7 @@ export default class ElmAdminBlog extends HTMLElement {
     this.spinnerDisplay(true);
 
     return _BefDb.get(
-      `SELECT id, image_id, title, text, category FROM articles WHERE user_id = ${ElmAdmin.LOGIN_ID};`,
+      `SELECT id, image_id, title, text, category, created_at FROM articles WHERE user_id = ${ElmAdmin.LOGIN_ID};`,
 
       (articles) => {
         this.spinnerDisplay(false);
@@ -87,7 +87,15 @@ export default class ElmAdminBlog extends HTMLElement {
       let title = article.title.decodeBase64();
       let endpoint = Routes.getEndpointArticle(article.id, title);
       Routes.setRoutes(endpoint, title);
-      Routes.setPageArticle(endpoint, title, article.text)
+
+      let options = {
+        page: endpoint,
+        title,
+        text: article.text,
+        date: article.created_at.toDate()
+      };
+
+      Routes.setPageArticle(options)
     }
   };
 
