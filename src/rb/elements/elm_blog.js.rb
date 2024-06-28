@@ -23,11 +23,6 @@ export default class ElmBlog < HTMLElement
   def disconnected_callback()
   end
 
-  def update_routes(endpoint, title, text)
-    Routes.set_routes(endpoint, title)
-    Routes.set_page_article(endpoint, title, text)
-  end
-
   def init_elm(articles)
     template = """
     <div class='row'>
@@ -43,10 +38,6 @@ export default class ElmBlog < HTMLElement
     articles.each do |article|
       title = article.title.decode_base64()
       endpoint = Routes.get_endpoint_article(article.id, title)
-
-      # unsafe
-      update_routes(endpoint, title, article.text)
-      # end
 
       template = """
 <div class='col-md-6 mb-4'>

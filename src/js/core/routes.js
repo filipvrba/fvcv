@@ -40,6 +40,23 @@ class Routes {
     if (!isExist) return ROUTES_JSON.pages.push(page)
   };
 
+  static removePageArticle(endpoint) {
+    delete PAGES[endpoint]
+  };
+
+  static removeArticlesRoutes(ids, callback) {
+    for (let id of ids) {
+      let index = ROUTES_JSON.pages.findIndex(obj => (
+        obj.endpoint.match(new RegExp(`blog_${id}`))
+      ));
+
+      if (index > -1) {
+        if (callback) callback(ROUTES_JSON.pages[index].endpoint);
+        ROUTES_JSON.pages.splice(index, 1)
+      }
+    }
+  };
+
   static getEndpointArticle(id, title) {
     return `blog_${id}_` + title.removeDiacritics().toLowerCase().replaceAll(
       " ",

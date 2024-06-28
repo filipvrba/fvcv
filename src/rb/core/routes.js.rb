@@ -51,6 +51,23 @@ class Routes
     end
   end
 
+  def self.remove_page_article(endpoint)
+    delete PAGES[endpoint]
+  end
+
+  def self.remove_articles_routes(ids, &callback)
+    ids.each do |id|
+      index = ROUTES_JSON.pages.find_index do |obj|
+        obj.endpoint.match(/blog_#{id}/)
+      end
+
+      if index > -1
+        callback(ROUTES_JSON.pages[index].endpoint) if callback
+        ROUTES_JSON.pages.splice(index, 1)
+      end
+    end
+  end
+
   def self.get_endpoint_article(id, title)
     "blog_#{id}_" + title.remove_diacritics().downcase().gsub(' ', '_')
   end

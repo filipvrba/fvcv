@@ -16,11 +16,6 @@ export default class ElmBlog extends HTMLElement {
     return null
   };
 
-  updateRoutes(endpoint, title, text) {
-    Routes.setRoutes(endpoint, title);
-    return Routes.setPageArticle(endpoint, title, text)
-  };
-
   initElm(articles) {
     let template = `${`
     <div class='row'>
@@ -36,11 +31,6 @@ export default class ElmBlog extends HTMLElement {
     for (let article of articles) {
       let title = article.title.decodeBase64();
       let endpoint = Routes.getEndpointArticle(article.id, title);
-
-      // unsafe
-      this.updateRoutes(endpoint, title, article.text);
-
-      // end
       let template = `${`
 <div class='col-md-6 mb-4'>
   <div class='card h-100'>

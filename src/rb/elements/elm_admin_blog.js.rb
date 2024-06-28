@@ -38,6 +38,9 @@ export default class ElmAdminBlog < HTMLElement
       end
     end
 
+    # Routes
+    remove_routes(ids)
+
     # Remove ids
     if ids.length > 0
       query = "DELETE FROM articles WHERE id IN (#{ids.join(', ')});"
@@ -71,6 +74,23 @@ export default class ElmAdminBlog < HTMLElement
                  "WHERE user_id = #{ElmAdmin::LOGIN_ID};") do |articles|
       spinner_display(false)
       subinit_elm(articles)
+      add_routes(articles)
+    end
+  end
+
+  def add_routes(articles)
+    articles.each do |article|
+      title = article.title.decode_base64()
+      endpoint = Routes.get_endpoint_article(article.id, title)
+
+      Routes.set_routes(endpoint, title)
+      Routes.set_page_article(endpoint, title, article.text)
+    end
+  end
+
+  def remove_routes(ids)
+    Routes.remove_articles_routes(ids) do |endpoint|
+      Routes.remove_page_article(endpoint)
     end
   end
 

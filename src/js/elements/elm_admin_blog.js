@@ -40,6 +40,9 @@ export default class ElmAdminBlog extends HTMLElement {
       }
     };
 
+    // Routes
+    this.removeRoutes(ids);
+
     if (ids.length > 0) {
       query = `DELETE FROM articles WHERE id IN (${ids.join(", ")});`;
 
@@ -73,8 +76,25 @@ export default class ElmAdminBlog extends HTMLElement {
 
       (articles) => {
         this.spinnerDisplay(false);
-        return this.subinitElm(articles)
+        this.subinitElm(articles);
+        return this.addRoutes(articles)
       }
+    )
+  };
+
+  addRoutes(articles) {
+    for (let article of articles) {
+      let title = article.title.decodeBase64();
+      let endpoint = Routes.getEndpointArticle(article.id, title);
+      Routes.setRoutes(endpoint, title);
+      Routes.setPageArticle(endpoint, title, article.text)
+    }
+  };
+
+  removeRoutes(ids) {
+    return Routes.removeArticlesRoutes(
+      ids,
+      endpoint => Routes.removePageArticle(endpoint)
     )
   };
 
