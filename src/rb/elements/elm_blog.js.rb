@@ -45,7 +45,7 @@ export default class ElmBlog < HTMLElement
     <img src='#{article['image_base64']}' class='card-img-top' alt='Náhled článku'>
     <div class='card-body d-flex flex-column'>
       <h5 class='card-title'>
-        <i class='bi bi-folder'></i>
+        <i class='bi bi-journal-text'></i>
         #{title}
       </h5>
       <p class='card-text'>#{article.text.decode_base64().max_length(150)}</p>
