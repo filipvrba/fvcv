@@ -69,7 +69,8 @@ class Routes
   end
 
   def self.get_endpoint_article(id, title)
-    "blog_#{id}_" + title.remove_diacritics().downcase().gsub(' ', '_')
+    "blog_#{id}_" + title.remove_diacritics().downcase()
+      .gsub(' ', '_').gsub(/[-|&]/, '_').gsub('___', '_')
   end
 end
 window.Routes = Routes

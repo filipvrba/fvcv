@@ -61,7 +61,7 @@ class Routes {
     return `blog_${id}_` + title.removeDiacritics().toLowerCase().replaceAll(
       " ",
       "_"
-    )
+    ).replaceAll(/[-|&]/g, "_").replaceAll("___", "_")
   }
 };
 
