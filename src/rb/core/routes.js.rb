@@ -25,7 +25,7 @@ window.PAGES = {
 class Routes
   def self.set_page_article(options)
     PAGES[options.page] = """
-    <div class='container mt-5'>
+    <div class='container mt-5 article'>
       <header class='text-center mb-4'>
         <h1>#{options.title}</h1>
         <p class='text-muted'>Datum: #{options.date}</p>

@@ -23,7 +23,7 @@ window.PAGES = {
 class Routes {
   static setPageArticle(options) {
     return PAGES[options.page] = `${`
-    <div class='container mt-5'>
+    <div class='container mt-5 article'>
       <header class='text-center mb-4'>
         <h1>${options.title}</h1>
         <p class='text-muted'>Datum: ${options.date}</p>
