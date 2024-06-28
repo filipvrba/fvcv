@@ -37,11 +37,18 @@ class Routes
   end
 
   def self.set_routes(page, title)
-    ROUTES_JSON.pages.push({
+    page = {
       "title": title,
       "endpoint": page,
       "priority": 1
-    })
+    }
+    is_exist = ROUTES_JSON.pages.some do |obj|
+      obj.endpoint == page.endpoint
+    end
+
+    unless is_exist
+      ROUTES_JSON.pages.push(page)
+    end
   end
 
   def self.get_endpoint_article(id, title)

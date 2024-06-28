@@ -16,6 +16,11 @@ export default class ElmBlog extends HTMLElement {
     return null
   };
 
+  updateRoutes(endpoint, title, text) {
+    Routes.setRoutes(endpoint, title);
+    return Routes.setPageArticle(endpoint, title, text)
+  };
+
   initElm(articles) {
     let template = `${`
     <div class='row'>
@@ -33,7 +38,7 @@ export default class ElmBlog extends HTMLElement {
       let endpoint = Routes.getEndpointArticle(article.id, title);
 
       // unsafe
-      Routes.setPageArticle(endpoint, title, article.text);
+      this.updateRoutes(endpoint, title, article.text);
 
       // end
       let template = `${`
@@ -78,6 +83,6 @@ export default class ElmBlog extends HTMLElement {
       result.push(template)
     };
 
-    return result.join("")
+    return result.reverse().join("")
   }
 }

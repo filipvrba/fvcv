@@ -35,7 +35,9 @@ class Routes {
   };
 
   static setRoutes(page, title) {
-    return ROUTES_JSON.pages.push({title, endpoint: page, priority: 1})
+    page = {title, endpoint: page, priority: 1};
+    let isExist = ROUTES_JSON.pages.some(obj => obj.endpoint === page.endpoint);
+    if (!isExist) return ROUTES_JSON.pages.push(page)
   };
 
   static getEndpointArticle(id, title) {
