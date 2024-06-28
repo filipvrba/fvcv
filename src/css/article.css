@@ -1,0 +1,30 @@
+blockquote {
+    margin: 0 7px 30px 5px;
+    padding: 0 16px 0 10px;
+    border-left-width: 5px;
+    border-left-style: solid;
+
+    background: rgba(127, 127, 127, 0.1);
+    border-color: rgba(0, 122, 204, 0.5);
+}
+  
+pre:not(.hljs),
+pre.hljs code > div {
+    padding: 16px;
+    border-radius: 3px;
+    overflow: auto;
+
+    border-width: 1px;
+    border-style: solid;
+
+    background-color: rgba(127, 127, 127, 0.1);
+    border-color: rgba(0, 122, 204, 0.5);
+}
+
+.article {
+    font-size: 18px;
+    
+    max-width: 960px;
+    margin-right: auto;
+    margin-left: auto;
+}

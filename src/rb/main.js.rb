@@ -1,11 +1,13 @@
 import '../css/bootstrap.min.css'
 import '../../node_modules/bootstrap-icons/font/bootstrap-icons.min.css'
+import '../../node_modules/highlight.js/styles/vs.css'
 
 import 'galleryObj', '../json/gallery.json'
 
 import '../css/lazy_image.css'
 import '../css/videos.css'
 import '../css/gallery.css'
+import '../css/article.css'
 import '../css/style.css'
 
 import './core'

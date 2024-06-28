@@ -1,5 +1,6 @@
 import 'CryptoJS', 'crypto-js'
 import 'markdownit', 'markdown-it'
+import 'hljs', 'highlight.js'
 
 def capitalize()
   str = self
@@ -79,7 +80,20 @@ end
 String.prototype.max_length = max_length
 
 def to_md()
-  md = markdownit()
+  options = {
+    highlight: lambda do |str, lang|
+
+      if lang && hljs.getLanguage(lang)
+        begin
+          return hljs.highlight(str, { language: lang }).value
+        rescue
+        end
+      end
+  
+      return '' # use external default escaping
+    end
+  }
+  md = markdownit(options)
   md.render(self)
 end
 String.prototype.to_md = to_md

@@ -30,7 +30,7 @@ class Routes
         <h1>#{options.title}</h1>
         <p class='text-muted'>Datum: #{options.date}</p>
       </header>
-      <div class='col-lg-8 mx-auto'>
+      <div class='mx-auto'>
         #{options.text.decode_base64().to_md()}
       </div>
     </div>

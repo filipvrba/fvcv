@@ -1,5 +1,6 @@
 import CryptoJS from "crypto-js";
 import markdownit from "markdown-it";
+import hljs from "highlight.js";
 
 function capitalize() {
   let str = this;
@@ -75,7 +76,19 @@ function maxLength(length=120) {
 String.prototype.maxLength = maxLength;
 
 function toMd() {
-  let md = markdownit();
+  let options = {highlight(str, lang) {
+    if (lang && hljs.getLanguage(lang)) {
+      try {
+        return hljs.highlight(str, {language: lang}).value
+      } catch {
+
+      }
+    };
+
+    return ""
+  }};
+
+  let md = markdownit(options);
   return md.render(this)
 };
 
