@@ -80,7 +80,7 @@ export default class ElmGithubProjects extends HTMLElement {
           </div>
 
           <div class='col-6 text-center'>
-            <a href='${repo.url}' target='_blank' class='btn btn-primary card-text'>
+            <a href='${repo.url}' target='_blank' class='btn btn-secondary card-text'>
               <i class='bi bi-eye'></i>
               Podívat se
             </a>

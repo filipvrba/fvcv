@@ -46,7 +46,7 @@ export default class ElmDetailedProjects < HTMLElement
       <p class='card-text'>#{row.description.decode_base64()}</p>
 
       <div class='mt-auto text-center'>
-        <a href='#{row.url}' target='_blank' class='btn btn-primary card-text'>
+        <a href='#{row.url}' target='_blank' class='btn btn-secondary card-text'>
           <i class='bi bi-eye'></i>
           Podívat se
         </a>

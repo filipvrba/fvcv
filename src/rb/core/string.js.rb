@@ -67,3 +67,12 @@ def size_in_kb()
 end
 
 String.prototype.size_in_kb = size_in_kb
+
+def max_length(length = 120)
+  if self.length > length
+    return self.substring(0, length) + '...'
+  else
+    return self
+  end
+end
+String.prototype.max_length = max_length

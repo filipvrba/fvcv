@@ -61,4 +61,14 @@ function sizeInKb() {
   return Math.ceil(sizeKb)
 };
 
-String.prototype.sizeInKb = sizeInKb
+String.prototype.sizeInKb = sizeInKb;
+
+function maxLength(length=120) {
+  if (this.length > length) {
+    return this.substring(0, length) + "..."
+  } else {
+    return this
+  }
+};
+
+String.prototype.maxLength = maxLength
