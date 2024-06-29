@@ -72,7 +72,11 @@ String.prototype.size_in_kb = size_in_kb
 
 def max_length(length = 120)
   if self.length > length
-    return self.substring(0, length) + '...'
+    return self
+           .gsub(/\[([^\]]*)\]\([^)]*\)/, "$1")
+           .substring(0, length)
+           .strip
+           .concat('...')
   else
     return self
   end

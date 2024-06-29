@@ -67,7 +67,10 @@ String.prototype.sizeInKb = sizeInKb;
 
 function maxLength(length=120) {
   if (this.length > length) {
-    return this.substring(0, length) + "..."
+    return this.replaceAll(/\[([^\]]*)\]\([^)]*\)/g, "$1").substring(
+      0,
+      length
+    ).trim().concat("...")
   } else {
     return this
   }
