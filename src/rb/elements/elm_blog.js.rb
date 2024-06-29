@@ -38,11 +38,12 @@ export default class ElmBlog < HTMLElement
     articles.each do |article|
       title = article.title.decode_base64()
       endpoint = Routes.get_endpoint_article(article.id, title)
+      img_src = article['image_base64'] == '' ? '/jpg/no_img_01.jpg' : article['image_base64']
 
       template = """
 <div class='col-md-6 mb-4'>
   <div class='card h-100'>
-    <img src='#{article['image_base64']}' class='card-img-top' alt='Náhled článku'>
+    <img src='#{img_src}' class='card-img-top' alt='Náhled článku'>
     <div class='card-body d-flex flex-column'>
       <h5 class='card-title'>
         <i class='bi bi-journal-text'></i>

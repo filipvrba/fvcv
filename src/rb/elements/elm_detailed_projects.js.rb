@@ -7,7 +7,7 @@ export default class ElmDetailedProjects < HTMLElement
     self.innerHTML = "<elm-spinner class='text-center mt-5 mb-5'></elm-spinner>"
 
     __bef_db.get("SELECT websites.name, websites.description, websites.url, " +
-                 "images.image_base64 FROM websites JOIN images ON " +
+                 "images.image_base64 FROM websites LEFT JOIN images ON " +
                  "websites.image_id = images.id; WHERE website.user_id = #{ElmAdmin::LOGIN_ID}") do |rows|
 
       init_elm(rows)
@@ -34,10 +34,12 @@ export default class ElmDetailedProjects < HTMLElement
     results = []
 
     rows.each do |row|
+      img_src = row['image_base64'] == '' ? '/jpg/no_img_01.jpg' : row['image_base64']
+
       template = """
 <div class='col-md-6 col-lg-4 mb-4'>
   <div class='card h-100'>
-    <img src='#{row['image_base64']}' class='card-img-top' alt='Náhled webové stránky'>
+    <img src='#{img_src}' class='card-img-top' alt='Náhled webové stránky'>
     <div class='card-body d-flex flex-column'>
       <h5 class='card-title'>
         <i class='bi bi-file-earmark-text'></i>

@@ -31,10 +31,11 @@ export default class ElmBlog extends HTMLElement {
     for (let article of articles) {
       let title = article.title.decodeBase64();
       let endpoint = Routes.getEndpointArticle(article.id, title);
+      let imgSrc = article.image_base64 === "" ? "/jpg/no_img_01.jpg" : article.image_base64;
       let template = `${`
 <div class='col-md-6 mb-4'>
   <div class='card h-100'>
-    <img src='${article.image_base64}' class='card-img-top' alt='Náhled článku'>
+    <img src='${imgSrc}' class='card-img-top' alt='Náhled článku'>
     <div class='card-body d-flex flex-column'>
       <h5 class='card-title'>
         <i class='bi bi-journal-text'></i>
