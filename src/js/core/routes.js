@@ -9,6 +9,7 @@ import galerieHTML from "../../html/galerie.html?raw";
 import projektyHTML from "../../html/projekty.html?raw";
 import blogHTML from "../../html/blog.html?raw";
 import oMneHTML from "../../html/o_mne.html?raw";
+import sluzbyHTML from "../../html/sluzby.html?raw";
 
 window.PAGES = {
   error: errorHTML,
@@ -19,7 +20,8 @@ window.PAGES = {
   galerie: galerieHTML,
   projekty: projektyHTML,
   blog: blogHTML,
-  o_mne: oMneHTML
+  o_mne: oMneHTML,
+  sluzby: sluzbyHTML
 };
 
 class Routes {

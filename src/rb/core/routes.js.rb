@@ -11,6 +11,7 @@ import 'galerieHTML', '../../html/galerie.html?raw'
 import 'projektyHTML', '../../html/projekty.html?raw'
 import 'blogHTML', '../../html/blog.html?raw'
 import 'oMneHTML', '../../html/o_mne.html?raw'
+import 'sluzbyHTML', '../../html/sluzby.html?raw'
 
 window.PAGES = {
   error: errorHTML,
@@ -22,6 +23,7 @@ window.PAGES = {
   projekty: projektyHTML,
   blog: blogHTML,
   'o_mne' => o_mneHTML,
+  sluzby: sluzbyHTML,
 }
 
 class Routes

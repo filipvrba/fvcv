@@ -44,6 +44,11 @@
         "title": "O mně",
         "endpoint": "o_mne",
         "priority": 1
+      },
+      {
+        "title": "Služby",
+        "endpoint": "sluzby",
+        "priority": 1
       }
     ]
   }
