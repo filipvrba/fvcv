@@ -16,6 +16,7 @@ export default class ElmAdminArticle extends HTMLElement {
     this._title = this.querySelector("#inputArticleTitle");
     this._text = this.querySelector("#inputArticleText");
     this._btnSave = this.querySelector("#adminBtnSaveArticle");
+    this._spinnerOverlay = this.querySelector("#spinnerOverlay");
     return this.initElmValues(this._id)
   };
 
@@ -66,40 +67,44 @@ export default class ElmAdminArticle extends HTMLElement {
 
   initElm() {
     let template = `${`
-<div class='row g-3'>
-  <div class='col-md-6'>
-    <div class='mb-3'>
-      <label for='inputArticleIDImage' class='form-label'>ID Obrázku</label>
-      <input type='number' class='form-control' id='inputArticleIDImage' min='0' value='0'>
-    </div>
-  </div>
+<div class='form-container'>
+  <elm-spinner class='spinner-overlay' id='spinnerOverlay'></elm-spinner>
 
-  <div class='col-md-6'>
-    <div class='mb-3'>
-      <label for='inputArticleCategory' class='form-label'>Kategorie</label>
-      <input type='text' class='form-control' id='inputArticleCategory'>
-    </div>
-  </div>
-</div>
-<div class='mb-4'>
-  <div class='mb-3'>
-    <label for='inputArticleTitle' class='form-label'>Název</label>
-    <input type='text' class='form-control' id='inputArticleTitle'>
-  </div>
-
-  <div class='mb-3'>
-    <div class='row'>
-      <div class='col-6'>
-        <label for='inputArticleText' class='form-label'>Text</label>
-      </div>
-      <div class='col-6 text-end'>
-        <a class='navbar-brand' href='https://www.markdownguide.org/cheat-sheet/' target='_bland'>
-          <i class='bi bi-info-circle'></i>
-          MD Cheat Sheet
-        </a>
+  <div class='row g-3'>
+    <div class='col-md-6'>
+      <div class='mb-3'>
+        <label for='inputArticleIDImage' class='form-label'>ID Obrázku</label>
+        <input type='number' class='form-control' id='inputArticleIDImage' min='0' value='0'>
       </div>
     </div>
-    <textarea type='text' class='form-control' id='inputArticleText' style='height: 300px'></textarea>
+
+    <div class='col-md-6'>
+      <div class='mb-3'>
+        <label for='inputArticleCategory' class='form-label'>Kategorie</label>
+        <input type='text' class='form-control' id='inputArticleCategory'>
+      </div>
+    </div>
+  </div>
+  <div class='mb-4'>
+    <div class='mb-3'>
+      <label for='inputArticleTitle' class='form-label'>Název</label>
+      <input type='text' class='form-control' id='inputArticleTitle'>
+    </div>
+
+    <div class='mb-3'>
+      <div class='row'>
+        <div class='col-6'>
+          <label for='inputArticleText' class='form-label'>Text</label>
+        </div>
+        <div class='col-6 text-end'>
+          <a class='navbar-brand' href='https://www.markdownguide.org/cheat-sheet/' target='_bland'>
+            <i class='bi bi-info-circle'></i>
+            MD Cheat Sheet
+          </a>
+        </div>
+      </div>
+      <textarea type='text' class='form-control' id='inputArticleText' style='height: 300px'></textarea>
+    </div>
   </div>
 </div>
 <div class='text-center'>
@@ -133,6 +138,7 @@ export default class ElmAdminArticle extends HTMLElement {
     this._category.disabled = isDisabled;
     this._title.disabled = isDisabled;
     this._text.disabled = isDisabled;
-    return this._btnSave.disabled = isDisabled
+    this._btnSave.disabled = isDisabled;
+    return this._spinnerOverlay.style.display = isDisabled ? "" : "none"
   }
 }

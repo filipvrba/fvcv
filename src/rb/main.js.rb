@@ -8,6 +8,7 @@ import '../css/lazy_image.css'
 import '../css/videos.css'
 import '../css/gallery.css'
 import '../css/article.css'
+import '../css/spinner.css'
 import '../css/style.css'
 
 import './core'
