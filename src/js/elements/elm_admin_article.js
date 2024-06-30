@@ -116,7 +116,11 @@ export default class ElmAdminArticle extends HTMLElement {
   };
 
   initElmValues(id) {
-    if (!id) return;
+    if (!id) {
+      this.setActivity(false);
+      return
+    };
+
     this.setActivity(true);
 
     return _BefDb.get(

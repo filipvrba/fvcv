@@ -118,6 +118,7 @@ export default class ElmAdminArticle < HTMLElement
 
   def init_elm_values(id)
     unless id
+      set_activity(false)
       return
     end
 
