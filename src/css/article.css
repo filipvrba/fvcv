@@ -28,3 +28,10 @@ pre.hljs code > div {
     margin-right: auto;
     margin-left: auto;
 }
+
+.article img {
+    max-width: 100%;
+    height: auto;
+    margin: auto;
+    display: block;
+}
