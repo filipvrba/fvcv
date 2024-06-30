@@ -108,35 +108,37 @@ export default class ElmAdminBlog extends HTMLElement {
 
   initElm() {
     let template = `${`
-<table class='table' id='tableArticles'>
-  <thead>
-    <tr>
-      <th scope='col'></th>
-      <th scope='col'>Název</th>
-      <th scope='col'>Kategorie</th>
-      <th scope='col' class='text-end'>
-        <div class='dropdown'>
-          <button class='btn btn-primary dropdown-toggle' type='button' data-bs-toggle='dropdown' aria-expanded='false'>
-            <i class='bi bi-gear'></i>
-            Akce
-          </button>
-          <ul class='dropdown-menu'>
-            <li>
-              <button id='dnBtnArticleNew' class='dropdown-item' onclick='dnBtnArticleNew()'>Nový</button>
-            </li>
-            <li>
-              <button id='dnBtnArticleRemove' class='dropdown-item' onclick='dnBtnArticleRemove()'>Odebrat</button>
-            </li>
-          </ul>
-        </div>
-      </th>
-    </tr>
-  </thead>
-  <tbody id='articlesTBody'>
+<div class='table-responsive'>
+  <table class='table' id='tableArticles'>
+    <thead>
+      <tr>
+        <th scope='col'></th>
+        <th scope='col'>Název</th>
+        <th scope='col'>Kategorie</th>
+        <th scope='col' class='text-end'>
+          <div class='dropdown'>
+            <button class='btn btn-primary dropdown-toggle' type='button' data-bs-toggle='dropdown' aria-expanded='false'>
+              <i class='bi bi-gear'></i>
+              Akce
+            </button>
+            <ul class='dropdown-menu'>
+              <li>
+                <button id='dnBtnArticleNew' class='dropdown-item' onclick='dnBtnArticleNew()'>Nový</button>
+              </li>
+              <li>
+                <button id='dnBtnArticleRemove' class='dropdown-item' onclick='dnBtnArticleRemove()'>Odebrat</button>
+              </li>
+            </ul>
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody id='articlesTBody'>
+      
+    </tbody>
     
-  </tbody>
-  
-</table>
+  </table>
+</div>
 <div id='spinnerBlog'>
   <elm-spinner class='text-center mt-5 mb-5'></elm-spinner>
 </div>

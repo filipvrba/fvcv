@@ -121,35 +121,37 @@ export default class ElmAdminImages extends HTMLElement {
   initElm(rows) {
     let template = `${`
 <input type='file' id='uploadFileInput' style='display: none;'>
-<table class='table' id='tableImages'>
-  <thead>
-    <tr>
-      <th scope='col'></th>
-      <th scope='col'>Název</th>
-      <th id='thSize' scope='col'>Velikost</th>
-      <th scope='col' class='text-end'>
-        <div class='dropdown'>
-          <button class='btn btn-primary dropdown-toggle' type='button' data-bs-toggle='dropdown' aria-expanded='false'>
-            <i class='bi bi-gear'></i>
-            Akce
-          </button>
-          <ul class='dropdown-menu'>
-            <li>
-              <button class='dropdown-item' onclick='dropdownBtnUploadClick()'>Nahrát</button>
-            </li>
-            <li>
-              <button class='dropdown-item' onclick='dropdownBtnRemoveClick()'>Odebrat</button>
-            </li>
-          </ul>
-        </div>
-      </th>
-    </tr>
-  </thead>
-  <tbody id='imagesTBody'>
+<div class='table-responsive'>
+  <table class='table' id='tableImages'>
+    <thead>
+      <tr>
+        <th scope='col'></th>
+        <th scope='col'>Název</th>
+        <th id='thSize' scope='col'>Velikost</th>
+        <th scope='col' class='text-end'>
+          <div class='dropdown'>
+            <button class='btn btn-primary dropdown-toggle' type='button' data-bs-toggle='dropdown' aria-expanded='false'>
+              <i class='bi bi-gear'></i>
+              Akce
+            </button>
+            <ul class='dropdown-menu'>
+              <li>
+                <button class='dropdown-item' onclick='dropdownBtnUploadClick()'>Nahrát</button>
+              </li>
+              <li>
+                <button class='dropdown-item' onclick='dropdownBtnRemoveClick()'>Odebrat</button>
+              </li>
+            </ul>
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody id='imagesTBody'>
+      
+    </tbody>
     
-  </tbody>
-  
-</table>
+  </table>
+</div>
 <div id='spinner'>
   <elm-spinner class='text-center mt-5 mb-5'></elm-spinner>
 </div>
