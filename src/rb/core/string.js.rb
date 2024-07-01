@@ -74,6 +74,7 @@ def max_length(length = 120)
   if self.length > length
     return self
            .gsub(/\[([^\]]*)\]\([^)]*\)/, "$1")
+           .gsub(/<!--[\s\S]*?-->/, '')
            .substring(0, length)
            .strip
            .concat('...')
