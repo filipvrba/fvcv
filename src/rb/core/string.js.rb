@@ -85,6 +85,7 @@ String.prototype.max_length = max_length
 
 def to_md()
   options = {
+    html: true,
     highlight: lambda do |str, lang|
 
       if lang && hljs.getLanguage(lang)
