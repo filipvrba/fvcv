@@ -3,3 +3,10 @@ def random_range()
 end
 
 Number.prototype.random_range = random_range
+
+def random(max)
+  min = self
+  Math.floor(Math.random() * (max - min) + min)
+end
+
+Number.prototype.random = random

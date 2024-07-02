@@ -22,5 +22,9 @@
     "blog": {
         "name": "Blog",
         "element": "elm-admin-blog"
+    },
+    "chat": {
+        "name": "Chat",
+        "element": "elm-admin-chat"
     }
 }

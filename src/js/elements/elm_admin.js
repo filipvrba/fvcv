@@ -40,7 +40,7 @@ export default class ElmAdmin extends HTMLElement {
     if (isLoggedIn) {
       // Section as an attribute is positional.
       // If we want to edit its content, please look in the 'admin_sections.json' file.
-      template = "<elm-admin-dashboard sections='images websites blog videos contacts profile'></elm-admin-dashboard>"
+      template = "<elm-admin-dashboard sections='chat images websites blog videos contacts profile'></elm-admin-dashboard>"
     };
 
     return this.innerHTML = template
