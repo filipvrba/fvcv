@@ -77,9 +77,10 @@ export default class ElmAdminChat extends HTMLElement {
 
   initMessage(message, isRight=true) {
     let style = isRight ? "text-align: right;" : "";
+    let classBadgeColor = isRight ? "text-bg-primary" : "text-bg-warning";
     let template = `${`
-    <div class='text-break' style='${style}'>
-      <span class='mx-3'>${message}</span>
+    <div class='mx-3 badge-container' style='${style}'>
+      <span class='badge ${classBadgeColor} custom-badge'>${message}</span>
     </div>
     
     `}`;

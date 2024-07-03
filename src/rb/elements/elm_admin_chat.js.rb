@@ -64,11 +64,12 @@ export default class ElmAdminChat < HTMLElement
   end
 
   def init_message(message, is_right = true)
-    style = is_right ? "text-align: right;" : ''
+    style             = is_right ? "text-align: right;" : ''
+    class_badge_color = is_right ? "text-bg-primary" : 'text-bg-warning'
 
     template = """
-    <div class='text-break' style='#{style}'>
-      <span class='mx-3'>#{message}</span>
+    <div class='mx-3 badge-container' style='#{style}'>
+      <span class='badge #{class_badge_color} custom-badge'>#{message}</span>
     </div>
     
     """

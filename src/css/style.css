@@ -65,3 +65,16 @@
 .image-container.loaded .large-image {
     opacity: 1;
 }
+
+.custom-badge {
+    white-space: normal;
+    word-wrap: break-word;
+    display: inline-block;
+    font-size: 1em;
+    font-weight: normal;
+    max-width: 80%;
+}
+
+.badge-container {
+    margin-bottom: 5px;
+}
