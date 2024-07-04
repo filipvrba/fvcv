@@ -5,6 +5,8 @@ export default class ElmAdminArticle < HTMLElement
   def initialize
     super
 
+    @h_text_keydown = lambda { |e| text_keydown(e) }
+
     @id = self.get_attribute('id')
 
     window.admin_btn_back_article = admin_btn_back_article_click
@@ -22,9 +24,27 @@ export default class ElmAdminArticle < HTMLElement
     @spinner_overlay = self.query_selector('#spinnerOverlay')
 
     init_elm_values(@id)
+    
+    @text.add_event_listener('keydown', @h_text_keydown)
   end
 
   def disconnected_callback()
+    @text.remove_event_listener('keydown', @h_text_keydown)
+  end
+
+  def text_keydown(event)
+    unless event.key == 'Tab'
+      return
+    end
+    event.prevent_default()
+
+    s_start = @text.selection_start
+    s_end = @text.selection_end
+
+    @text.value = @text.value.substring(0, s_start) +
+      "\t" + @text.value.substring(s_end)
+    
+    @text.selection_start = @text.selection_end = s_start + 1
   end
 
   def admin_btn_back_article_click()

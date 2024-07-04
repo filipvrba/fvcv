@@ -4,6 +4,7 @@ import ElmAlert from "./elm_alert";
 export default class ElmAdminArticle extends HTMLElement {
   constructor() {
     super();
+    this._hTextKeydown = e => this.textKeydown(e);
     this._id = this.getAttribute("id");
     window.adminBtnBackArticle = this.adminBtnBackArticleClick.bind(this);
     window.adminBtnSaveArticle = this.adminBtnSaveArticleClick.bind(this)
@@ -17,11 +18,21 @@ export default class ElmAdminArticle extends HTMLElement {
     this._text = this.querySelector("#inputArticleText");
     this._btnSave = this.querySelector("#adminBtnSaveArticle");
     this._spinnerOverlay = this.querySelector("#spinnerOverlay");
-    return this.initElmValues(this._id)
+    this.initElmValues(this._id);
+    return this._text.addEventListener("keydown", this._hTextKeydown)
   };
 
   disconnectedCallback() {
-    return null
+    return this._text.removeEventListener("keydown", this._hTextKeydown)
+  };
+
+  textKeydown(event) {
+    if (event.key !== "Tab") return;
+    event.preventDefault();
+    let sStart = this._text.selectionStart;
+    let sEnd = this._text.selectionEnd;
+    this._text.value = this._text.value.substring(0, sStart) + "\t" + this._text.value.substring(sEnd);
+    return this._text.selectionStart = this._text.selectionEnd = sStart + 1
   };
 
   adminBtnBackArticleClick() {
