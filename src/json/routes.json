@@ -49,6 +49,11 @@
         "title": "Služby",
         "endpoint": "sluzby",
         "priority": 1
+      },
+      {
+        "title": "Quake 2",
+        "endpoint": "quake2",
+        "priority": 2
       }
     ]
   }
