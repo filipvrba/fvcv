@@ -103,3 +103,10 @@ def to_md()
   md.render(self)
 end
 String.prototype.to_md = to_md
+
+def generate_token()
+  # random_value = Math.random().to_string()
+  token = CryptoJS.SHA256(self).to_string(CryptoJS.enc.Hex)
+  return token
+end
+String.prototype.generate_token = generate_token

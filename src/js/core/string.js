@@ -95,4 +95,12 @@ function toMd() {
   return md.render(this)
 };
 
-String.prototype.toMd = toMd
+String.prototype.toMd = toMd;
+
+function generateToken() {
+  // random_value = Math.random().to_string()
+  let token = CryptoJS.SHA256(this).toString(CryptoJS.enc.Hex);
+  return token
+};
+
+String.prototype.generateToken = generateToken

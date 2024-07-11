@@ -28,15 +28,22 @@ export default class ElmAdminChat < HTMLElement
     if message
       init_message(message)
       @chat_message.value = ''
-      
 
-      set_timeout(lambda do
+      duck_send_message()
+    end
+  end
+
+  def duck_send_message(message = nil)
+    set_timeout(lambda do
+      unless message
         duck_messages = ['duck', 'duck duck', 'duck duck duck']
         random_index = 0.random(duck_messages.length)
         duck_message = duck_messages[random_index]
         init_message(duck_message, false)
-      end, 500)
-    end
+      else
+        init_message(message, false)
+      end
+    end, 500)
   end
 
   def chat_message_keypress(event)

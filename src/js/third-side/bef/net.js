@@ -14,7 +14,7 @@ function befJson(url, callback) {
 
 Net.prototype.constructor.befJson = befJson;
 
-function befSend(method, query, callback) {
+function befSend(method, query, isVerbose=true, callback) {
   method = method.toUpperCase();
 
   return fetch(ENV.VITE_URL_API, {method, headers: {
@@ -23,7 +23,7 @@ function befSend(method, query, callback) {
     Query: query
   }}).then(response => response.json()).then((data) => {
     if (data.status_code === 403 || data.status_code === 405 || data.status === Net.SQL_ERR) {
-      console.error(`${method}: ${data.status_code} ${data.status}`);
+      if (isVerbose) console.error(`${method}: ${data.status_code} ${data.status}`);
       if (callback) return callback(false)
     } else if (callback) {
       return callback(true)

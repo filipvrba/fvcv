@@ -22,23 +22,23 @@ class Database
     end
   end
 
-  def set(query, &callback)
+  def set(query, is_verbose = true, &callback)
     is_active = false
     low_query = query.toLowerCase()
     if low_query.indexOf('insert into') > -1 ||
        low_query.indexOf('create table') > -1
       is_active = true
-      Net.bef_send('post', query) do |data|
+      Net.bef_send('post', query, is_verbose) do |data|
         callback(data) if callback
       end
     elsif low_query.indexOf('delete') > -1
       is_active = true
-      Net.bef_send('delete', query) do |data|
+      Net.bef_send('delete', query, is_verbose) do |data|
         callback(data) if callback
       end
     elsif low_query.indexOf('update') > -1
       is_active = true
-      Net.bef_send('patch', query) do |data|
+      Net.bef_send('patch', query, is_verbose) do |data|
         callback(data) if callback
       end
     end

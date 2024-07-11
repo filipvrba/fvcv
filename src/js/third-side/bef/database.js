@@ -22,26 +22,26 @@ class Database {
     })
   };
 
-  set(query, callback) {
+  set(query, isVerbose=true, callback) {
     let isActive = false;
     let lowQuery = query.toLowerCase();
 
     if (lowQuery.indexOf("insert into") > -1 || lowQuery.indexOf("create table") > -1) {
       isActive = true;
 
-      Net.befSend("post", query, (data) => {
+      Net.befSend("post", query, isVerbose, (data) => {
         if (callback) return callback(data)
       })
     } else if (lowQuery.indexOf("delete") > -1) {
       isActive = true;
 
-      Net.befSend("delete", query, (data) => {
+      Net.befSend("delete", query, isVerbose, (data) => {
         if (callback) return callback(data)
       })
     } else if (lowQuery.indexOf("update") > -1) {
       isActive = true;
 
-      Net.befSend("patch", query, (data) => {
+      Net.befSend("patch", query, isVerbose, (data) => {
         if (callback) return callback(data)
       })
     };

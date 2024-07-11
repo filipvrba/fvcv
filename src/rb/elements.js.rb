@@ -67,3 +67,6 @@ window.custom_elements.define('elm-blog', ElmBlog)
 
 import 'ElmAdminChat', './elements/elm_admin_chat'
 window.custom_elements.define('elm-admin-chat', ElmAdminChat)
+
+import 'ElmNewsletteru', './elements/elm_newsletteru'
+window.custom_elements.define('elm-newsletteru', ElmNewsletteru)

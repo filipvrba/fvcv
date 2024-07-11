@@ -40,18 +40,27 @@ export default class ElmAdminChat extends HTMLElement {
     if (message) {
       this.initMessage(message);
       this._chatMessage.value = "";
-
-      return setTimeout(
-        () => {
-          let duckMessages = ["duck", "duck duck", "duck duck duck"];
-          let randomIndex = (0).random(duckMessages.length);
-          let duckMessage = duckMessages[randomIndex];
-          return this.initMessage(duckMessage, false)
-        },
-
-        500
-      )
+      return this.duckSendMessage()
     }
+  };
+
+  duckSendMessage(message=null) {
+    return setTimeout(
+      () => {
+        let duckMessages, randomIndex, duckMessage;
+
+        if (message) {
+          return this.initMessage(message, false)
+        } else {
+          duckMessages = ["duck", "duck duck", "duck duck duck"];
+          randomIndex = (0).random(duckMessages.length);
+          duckMessage = duckMessages[randomIndex];
+          return this.initMessage(duckMessage, false)
+        }
+      },
+
+      500
+    )
   };
 
   chatMessageKeypress(event) {

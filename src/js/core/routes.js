@@ -11,6 +11,7 @@ import blogHTML from "../../html/blog.html?raw";
 import oMneHTML from "../../html/o_mne.html?raw";
 import sluzbyHTML from "../../html/sluzby.html?raw";
 import quake2HTML from "../../html/quake2.html?raw";
+import newsletterHTML from "../../html/newsletter.html?raw";
 
 window.PAGES = {
   error: errorHTML,
@@ -23,7 +24,8 @@ window.PAGES = {
   blog: blogHTML,
   o_mne: oMneHTML,
   sluzby: sluzbyHTML,
-  quake2: quake2HTML
+  quake2: quake2HTML,
+  newsletter: newsletterHTML
 };
 
 class Routes {
