@@ -70,3 +70,6 @@ window.custom_elements.define('elm-admin-chat', ElmAdminChat)
 
 import 'ElmNewsletteru', './elements/elm_newsletteru'
 window.custom_elements.define('elm-newsletteru', ElmNewsletteru)
+
+import 'ElmBtnPlay', './elements/elm_btn_play'
+window.custom_elements.define('elm-btn-play', ElmBtnPlay)

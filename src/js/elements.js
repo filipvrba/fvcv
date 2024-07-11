@@ -65,4 +65,6 @@ window.customElements.define("elm-blog", ElmBlog);
 import ElmAdminChat from "./elements/elm_admin_chat";
 window.customElements.define("elm-admin-chat", ElmAdminChat);
 import ElmNewsletteru from "./elements/elm_newsletteru";
-window.customElements.define("elm-newsletteru", ElmNewsletteru)
+window.customElements.define("elm-newsletteru", ElmNewsletteru);
+import ElmBtnPlay from "./elements/elm_btn_play";
+window.customElements.define("elm-btn-play", ElmBtnPlay)
