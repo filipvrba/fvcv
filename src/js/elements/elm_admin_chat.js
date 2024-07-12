@@ -1,3 +1,5 @@
+import CTools from "../components/elements/admin-chat/tools";
+
 export default class ElmAdminChat extends HTMLElement {
   constructor() {
     super();
@@ -7,6 +9,7 @@ export default class ElmAdminChat extends HTMLElement {
     };
 
     this._hChatMessageKeypress = e => this.chatMessageKeypress(e);
+    this._tools = new CTools;
     this.initElm();
     this._sendMessage = this.querySelector("#sendMessage");
     this._chatMessage = this.querySelector("#chatMessage");
@@ -40,7 +43,12 @@ export default class ElmAdminChat extends HTMLElement {
     if (message) {
       this.initMessage(message);
       this._chatMessage.value = "";
-      return this.duckSendMessage()
+      this.duckSendMessage();
+
+      return this._tools.searchToUse(
+        message,
+        this.duckSendMessage.bind(this)
+      )
     }
   };
 

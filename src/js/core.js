@@ -5,4 +5,5 @@ import "./core/url_params";
 import "./core/string";
 import "./core/cookie";
 import "./core/clock";
-import "./core/number"
+import "./core/number";
+import "./core/object"

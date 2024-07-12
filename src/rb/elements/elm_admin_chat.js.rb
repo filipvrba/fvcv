@@ -1,9 +1,13 @@
+import 'CTools', '../components/elements/admin-chat/tools'
+
 export default class ElmAdminChat < HTMLElement
   def initialize
     super
     
     @h_send_message_click    = lambda { |_| send_message() }
     @h_chat_message_keypress = lambda { |e| chat_message_keypress(e) } 
+
+    @tools = CTools.new
 
     init_elm()
 
@@ -30,6 +34,7 @@ export default class ElmAdminChat < HTMLElement
       @chat_message.value = ''
 
       duck_send_message()
+      @tools.search_to_use(message, duck_send_message)
     end
   end
 
