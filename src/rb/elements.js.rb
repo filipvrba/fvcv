@@ -76,3 +76,6 @@ window.custom_elements.define('elm-btn-play', ElmBtnPlay)
 
 import 'ElmGames', './elements/elm_games'
 window.custom_elements.define('elm-games', ElmGames)
+
+import 'ElmAdminNewsletter', './elements/elm_admin_newsletter'
+window.custom_elements.define('elm-admin-newsletter', ElmAdminNewsletter)

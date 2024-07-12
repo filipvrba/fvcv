@@ -26,5 +26,9 @@
     "chat": {
         "name": "Chat",
         "element": "elm-admin-chat"
+    },
+    "newsletter": {
+        "name": "Newsletter",
+        "element": "elm-admin-newsletter"
     }
 }

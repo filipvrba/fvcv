@@ -69,4 +69,10 @@ window.customElements.define("elm-newsletteru", ElmNewsletteru);
 import ElmBtnPlay from "./elements/elm_btn_play";
 window.customElements.define("elm-btn-play", ElmBtnPlay);
 import ElmGames from "./elements/elm_games";
-window.customElements.define("elm-games", ElmGames)
+window.customElements.define("elm-games", ElmGames);
+import ElmAdminNewsletter from "./elements/elm_admin_newsletter";
+
+window.customElements.define(
+  "elm-admin-newsletter",
+  ElmAdminNewsletter
+)
