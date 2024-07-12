@@ -29,6 +29,12 @@ export default class ElmAdminChat < HTMLElement
   def send_message()
     message = @chat_message.value.strip
 
+    if /clear/.test(message)
+      @chat_messages.innerHTML = ''
+      @chat_message.value = ''
+      return
+    end
+
     if message
       init_message(message)
       @chat_message.value = ''

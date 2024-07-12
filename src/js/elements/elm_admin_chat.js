@@ -40,6 +40,12 @@ export default class ElmAdminChat extends HTMLElement {
   sendMessage() {
     let message = this._chatMessage.value.trim();
 
+    if (/clear/.test(message)) {
+      this._chatMessages.innerHTML = "";
+      this._chatMessage.value = "";
+      return
+    };
+
     if (message) {
       this.initMessage(message);
       this._chatMessage.value = "";
