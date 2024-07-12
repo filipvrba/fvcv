@@ -14,6 +14,7 @@ import 'oMneHTML', '../../html/o_mne.html?raw'
 import 'sluzbyHTML', '../../html/sluzby.html?raw'
 import 'quake2HTML', '../../html/quake2.html?raw'
 import 'newsletterHTML', '../../html/newsletter.html?raw'
+import 'hryHTML', '../../html/hry.html?raw'
 
 window.PAGES = {
   error: errorHTML,
@@ -28,6 +29,7 @@ window.PAGES = {
   sluzby: sluzbyHTML,
   quake2: quake2HTML,
   newsletter: newsletterHTML,
+  hry: hryHTML,
 }
 
 class Routes

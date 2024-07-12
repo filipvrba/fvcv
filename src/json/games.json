@@ -1,0 +1,9 @@
+{
+    "games": [
+        {
+            "name": "Quake 2",
+            "endpoint": "#quake2",
+            "category": "Akčí FPS"
+        }
+    ]
+}

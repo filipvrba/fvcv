@@ -1,3 +1,4 @@
-elm-videos tbody tr {
+elm-videos tbody tr,
+elm-games tbody tr {
     cursor: pointer;
 }

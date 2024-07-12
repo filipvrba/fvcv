@@ -56,6 +56,11 @@
         "priority": 1
       },
       {
+        "title": "Hry",
+        "endpoint": "hry",
+        "priority": 1
+      },
+      {
         "title": "Quake 2",
         "endpoint": "quake2",
         "priority": 2
