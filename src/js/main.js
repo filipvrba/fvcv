@@ -2,6 +2,7 @@ import "../css/bootstrap.min.css";
 import "../../node_modules/bootstrap-icons/font/bootstrap-icons.min.css";
 import "../../node_modules/highlight.js/styles/vs.css";
 import galleryObj from "../json/gallery.json";
+import quakeGalleryObj from "../json/quake_gallery.json";
 import "../css/lazy_image.css";
 import "../css/videos.css";
 import "../css/gallery.css";
@@ -20,7 +21,7 @@ window.GITHUB_URL = {
   GISTS: "https://api.github.com/users/filipvrba/gists"
 };
 
-window.GALLERY_JSON = {gallery: galleryObj};
+window.GALLERY_JSON = {gallery: galleryObj, quake2: quakeGalleryObj};
 let query = `SELECT id, title, text, created_at FROM articles WHERE user_id = ${ElmAdmin.LOGIN_ID};`;
 
 _BefDb.get(query, (articles) => {

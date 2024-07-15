@@ -1,0 +1,16 @@
+{
+    "gallery": [
+        {
+            "name": "Objevování druhého patra na mapě",
+            "picture": "/jpg/gallery/quake2/quake_01.jpg"
+        },
+        {
+            "name": "Střílení na nepřítele",
+            "picture": "/jpg/gallery/quake2/quake_02.jpg"
+        },
+        {
+            "name": "Zničené a zatopené prostředí, kde nepřítel hlídá vchod",
+            "picture": "/jpg/gallery/quake2/quake_03.jpg"
+        }
+    ]
+}

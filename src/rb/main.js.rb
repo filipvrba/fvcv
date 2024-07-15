@@ -3,6 +3,7 @@ import '../../node_modules/bootstrap-icons/font/bootstrap-icons.min.css'
 import '../../node_modules/highlight.js/styles/vs.css'
 
 import 'galleryObj', '../json/gallery.json'
+import 'quakeGalleryObj', '../json/quake_gallery.json'
 
 import '../css/lazy_image.css'
 import '../css/videos.css'
@@ -25,6 +26,7 @@ window.GITHUB_URL = {
 }
 window.GALLERY_JSON = {
   "gallery" => gallery_obj,
+  "quake2" => quakeGalleryObj, 
 }
 
 query = "SELECT id, title, text, created_at FROM articles " +
