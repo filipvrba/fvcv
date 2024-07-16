@@ -41,7 +41,7 @@ export default class ElmBlog < HTMLElement
       img_src = article['image_base64'] == '' ? '/jpg/no_img_01.jpg' : article['image_base64']
 
       template = """
-<div class='col-md-6 mb-4'>
+<div class='col-md-6 col-lg-4 mb-4'>
   <div class='card h-100'>
     <img src='#{img_src}' class='card-img-top' alt='Náhled článku'>
     <div class='card-body d-flex flex-column'>

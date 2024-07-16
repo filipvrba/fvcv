@@ -33,7 +33,7 @@ export default class ElmBlog extends HTMLElement {
       let endpoint = Routes.getEndpointArticle(article.id, title);
       let imgSrc = article.image_base64 === "" ? "/jpg/no_img_01.jpg" : article.image_base64;
       let template = `${`
-<div class='col-md-6 mb-4'>
+<div class='col-md-6 col-lg-4 mb-4'>
   <div class='card h-100'>
     <img src='${imgSrc}' class='card-img-top' alt='Náhled článku'>
     <div class='card-body d-flex flex-column'>
