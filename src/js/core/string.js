@@ -103,4 +103,16 @@ function generateToken() {
   return token
 };
 
-String.prototype.generateToken = generateToken
+String.prototype.generateToken = generateToken;
+
+function subNewsletter(element, comment="<!-- newsletter -->") {
+  let rowsText = this.split("\n");
+  let indexNewsletter = rowsText.indexOf(comment);
+  let isEmailToken = !localStorage.getItem("e_token");
+  if (indexNewsletter <= -1 || !isEmailToken) return this;
+  rowsText.splice(indexNewsletter);
+  let text = rowsText.join("\n").concat(`<${element}></${element}>`);
+  return text
+};
+
+String.prototype.subNewsletter = subNewsletter

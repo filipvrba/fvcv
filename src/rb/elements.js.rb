@@ -79,3 +79,6 @@ window.custom_elements.define('elm-games', ElmGames)
 
 import 'ElmAdminNewsletter', './elements/elm_admin_newsletter'
 window.custom_elements.define('elm-admin-newsletter', ElmAdminNewsletter)
+
+import 'ElmNewsletterArticle', './elements/elm_newsletter_article'
+window.custom_elements.define('elm-newsletter-article', ElmNewsletterArticle)

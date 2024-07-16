@@ -1,3 +1,4 @@
+import ElmAdmin from "../elements/elm_admin";
 import routesObj from "../../json/routes.json";
 window.ROUTES_JSON = routesObj;
 import errorHTML from "../../html/error.html?raw";
@@ -32,6 +33,7 @@ window.PAGES = {
 
 class Routes {
   static setPageArticle(options) {
+    let text = options.text.decodeBase64().toMd().subNewsletter("elm-newsletter-article");
     return PAGES[options.page] = `${`
     <div class='container mt-5 article'>
       <header class='text-center mb-4'>
@@ -39,7 +41,7 @@ class Routes {
         <p class='text-muted'>Datum: ${options.date}</p>
       </header>
       <div class='mx-auto'>
-        ${options.text.decodeBase64().toMd()}
+        ${text}
       </div>
     </div>
     `}`
@@ -73,6 +75,29 @@ class Routes {
       " ",
       "_"
     ).replaceAll(/[-|&]/g, "_").replaceAll("___", "_")
+  };
+
+  static updatePageArticles(callback) {
+    let query = `SELECT id, title, text, created_at FROM articles WHERE user_id = ${ElmAdmin.LOGIN_ID};`;
+
+    return _BefDb.get(query, (articles) => {
+      for (let article of articles) {
+        let title = article.title.decodeBase64();
+        let endpoint = Routes.getEndpointArticle(article.id, title);
+        Routes.setRoutes(endpoint, title);
+
+        let options = {
+          page: endpoint,
+          title,
+          text: article.text,
+          date: article.created_at.toDate()
+        };
+
+        Routes.setPageArticle(options)
+      };
+
+      if (callback) return callback()
+    })
   }
 };
 

@@ -75,4 +75,11 @@ import ElmAdminNewsletter from "./elements/elm_admin_newsletter";
 window.customElements.define(
   "elm-admin-newsletter",
   ElmAdminNewsletter
+);
+
+import ElmNewsletterArticle from "./elements/elm_newsletter_article";
+
+window.customElements.define(
+  "elm-newsletter-article",
+  ElmNewsletterArticle
 )

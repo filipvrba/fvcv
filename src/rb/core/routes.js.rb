@@ -1,3 +1,4 @@
+import 'ElmAdmin', '../elements/elm_admin'
 import 'routesObj', '../../json/routes.json'
 
 window.ROUTES_JSON = routes_obj
@@ -34,6 +35,9 @@ window.PAGES = {
 
 class Routes
   def self.set_page_article(options)
+    text = options.text.decode_base64().to_md()
+          .sub_newsletter("elm-newsletter-article")
+
     PAGES[options.page] = """
     <div class='container mt-5 article'>
       <header class='text-center mb-4'>
@@ -41,7 +45,7 @@ class Routes
         <p class='text-muted'>Datum: #{options.date}</p>
       </header>
       <div class='mx-auto'>
-        #{options.text.decode_base64().to_md()}
+        #{text}
       </div>
     </div>
     """
@@ -82,6 +86,29 @@ class Routes
   def self.get_endpoint_article(id, title)
     "blog_#{id}_" + title.remove_diacritics().downcase()
       .gsub(' ', '_').gsub(/[-|&]/, '_').gsub('___', '_')
+  end
+
+  def self.update_page_articles(&callback)
+    query = "SELECT id, title, text, created_at FROM articles " +
+            "WHERE user_id = #{ElmAdmin::LOGIN_ID};"
+  
+    __bef_db.get(query) do |articles|
+      articles.each do |article|
+        title    = article.title.decode_base64()
+        endpoint = Routes.get_endpoint_article(article.id, title)
+  
+        Routes.set_routes(endpoint, title)
+        options = {
+          page: endpoint,
+          title: title,
+          text: article.text,
+          date: article['created_at'].to_date(),
+        }
+        Routes.set_page_article(options)
+      end
+  
+      callback() if callback
+    end
   end
 end
 window.Routes = Routes

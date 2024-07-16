@@ -110,3 +110,18 @@ def generate_token()
   return token
 end
 String.prototype.generate_token = generate_token
+
+def sub_newsletter(element, comment = "<!-- newsletter -->")
+  rows_text        = self.split("\n")
+  index_newsletter = rows_text.index(comment)
+  is_email_token   = !local_storage.get_item('e_token')
+
+  unless index_newsletter > -1 && is_email_token
+    return self
+  end
+
+  rows_text.splice(index_newsletter)
+  text = rows_text.join("\n").concat("<#{element}></#{element}>")
+  return text
+end
+String.prototype.sub_newsletter = sub_newsletter

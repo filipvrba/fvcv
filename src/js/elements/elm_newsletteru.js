@@ -19,22 +19,30 @@ export default class ElmNewsletteru extends HTMLElement {
     let token = this._email.value.generateToken();
     this.addEmailToDb(this._email.value, token);
     localStorage.setItem("e_token", token);
+    Routes.updatePageArticles();
     return this._email.value = ""
   };
 
   addEmailToDb(email, token) {
     let query = `INSERT INTO newsletter (email, token) VALUES ('${email}', '${token}');`;
+    _BefDb.isVerbose = false;
 
-    return _BefDb.set(query, false, isRegistered => (
-      isRegistered ? Events.emit(
-        "#app",
-        ElmAlert.ENVS.SHOW,
-        {endTime: 7, message: "Děkuji za přihlášení odběru newsletteru."}
-      ) : Events.emit("#app", ElmAlert.ENVS.SHOW, {
-        endTime: 7,
-        message: "Zadaný e-mail je již přihlášen k odběru newsletteru."
-      })
-    ))
+    return _BefDb.set(query, (isRegistered) => {
+      if (isRegistered) {
+        Events.emit(
+          "#app",
+          ElmAlert.ENVS.SHOW,
+          {endTime: 7, message: "Děkuji za přihlášení odběru newsletteru."}
+        )
+      } else {
+        Events.emit("#app", ElmAlert.ENVS.SHOW, {
+          endTime: 7,
+          message: "Zadaný e-mail je již přihlášen k odběru newsletteru."
+        })
+      };
+
+      return _BefDb.isVerbose = true
+    })
   };
 
   initElm() {

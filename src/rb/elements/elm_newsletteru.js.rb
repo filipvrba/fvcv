@@ -23,6 +23,7 @@ export default class ElmNewsletteru < HTMLElement
     token = @email.value.generate_token()
     add_email_to_db(@email.value, token)
     local_storage.set_item('e_token', token)
+    Routes.update_page_articles()
     
     @email.value = ''
   end
@@ -31,7 +32,8 @@ export default class ElmNewsletteru < HTMLElement
     query = "INSERT INTO newsletter (email, token) " +
             "VALUES ('#{email}', '#{token}');"
 
-    __bef_db.set(query, false) do |is_registered|
+    __bef_db.is_verbose = false
+    __bef_db.set(query) do |is_registered|
       if is_registered
         Events.emit('#app', ElmAlert::ENVS::SHOW, {
           end_time: 7,
@@ -43,6 +45,7 @@ export default class ElmNewsletteru < HTMLElement
           message: "Zadaný e-mail je již přihlášen k odběru newsletteru."
         })
       end
+      __bef_db.is_verbose = true
     end
   end
 
