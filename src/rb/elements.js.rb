@@ -82,3 +82,6 @@ window.custom_elements.define('elm-admin-newsletter', ElmAdminNewsletter)
 
 import 'ElmNewsletterArticle', './elements/elm_newsletter_article'
 window.custom_elements.define('elm-newsletter-article', ElmNewsletterArticle)
+
+import 'ElmQuake2Achievements', './elements/elm_quake2_achievements'
+window.custom_elements.define('elm-quake2-achievements', ElmQuake2Achievements)

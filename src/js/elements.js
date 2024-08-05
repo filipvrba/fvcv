@@ -82,4 +82,11 @@ import ElmNewsletterArticle from "./elements/elm_newsletter_article";
 window.customElements.define(
   "elm-newsletter-article",
   ElmNewsletterArticle
+);
+
+import ElmQuake2Achievements from "./elements/elm_quake2_achievements";
+
+window.customElements.define(
+  "elm-quake2-achievements",
+  ElmQuake2Achievements
 )
