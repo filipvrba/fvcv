@@ -12,7 +12,9 @@ export default class ElmQuake2Achievements < HTMLElement
     end
 
     init_elm()
-    @achievements = self.query_selector('#quake2Achievements')
+    @first_achievements = self.query_selector('#quake2FirstAchievements')
+    @second_achievements = self.query_selector('#quake2SecondAchievements')
+    @second_container_achievements = self.query_selector('#quake2SecondContainerAchievements')
     @c_database   = CDatabase.new(e_token)
 
     get_data()
@@ -40,7 +42,20 @@ export default class ElmQuake2Achievements < HTMLElement
   def init_elm()
     template = """
     <h2 class='text-center'>Úspěchy</h2>
-    <div class='row' id='quake2Achievements'>
+    <div class='row' id='quake2FirstAchievements'>
+    </div>
+
+    <div class='accordion' id='quake2SecondAchievements' style='display: none;'>
+      <div class='accordion-item'>
+        <h3 class='accordion-header'>
+          <button class='accordion-button collapsed' type='button' data-bs-toggle='collapse' data-bs-target='#collapseOne' aria-expanded='true' aria-controls='collapseOne'>
+            Staší úspěchy
+          </button>
+        </h3>
+        <div id='collapseOne' class='accordion-collapse collapse' data-bs-parent='#quake2SecondAchievements'>
+          <div id='quake2SecondContainerAchievements' class='accordion-body row'></div>
+        </div>
+      </div>
     </div>
     """
 
@@ -49,7 +64,7 @@ export default class ElmQuake2Achievements < HTMLElement
 
   def subinit_elm(options)
     result = []
-    options.db.each do |row|
+    options.db.reverse().each do |row|
       achievement_id   = row['achievement_id'].to_i
       achievement_data = options.obj.ids[achievement_id]
       img              = achievement_data.img
@@ -71,10 +86,21 @@ export default class ElmQuake2Achievements < HTMLElement
       """
       result.push(template)
     end
-    return result.join('')
+    return result
   end
 
   def update_init_elm(options)
-    @achievements.innerHTML = subinit_elm(options)
+    elements = subinit_elm(options)
+
+    unless elements.length > 4
+      @first_achievements.innerHTML = elements.join('')
+    else
+      head = elements.slice(0, 4)
+      tail = elements.slice(4)
+
+      @first_achievements.innerHTML = head.join('')
+      @second_container_achievements.innerHTML = tail.join('')
+      @second_achievements.style.display = ''
+    end
   end
 end

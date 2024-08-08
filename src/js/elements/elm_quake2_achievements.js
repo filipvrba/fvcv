@@ -7,7 +7,9 @@ export default class ElmQuake2Achievements extends HTMLElement {
     let eToken = localStorage.getItem("e_token");
     if (!eToken) return;
     this.initElm();
-    this._achievements = this.querySelector("#quake2Achievements");
+    this._firstAchievements = this.querySelector("#quake2FirstAchievements");
+    this._secondAchievements = this.querySelector("#quake2SecondAchievements");
+    this._secondContainerAchievements = this.querySelector("#quake2SecondContainerAchievements");
     this._cDatabase = new CDatabase(eToken);
     this.getData()
   };
@@ -38,7 +40,20 @@ export default class ElmQuake2Achievements extends HTMLElement {
   initElm() {
     let template = `${`
     <h2 class='text-center'>Úspěchy</h2>
-    <div class='row' id='quake2Achievements'>
+    <div class='row' id='quake2FirstAchievements'>
+    </div>
+
+    <div class='accordion' id='quake2SecondAchievements' style='display: none;'>
+      <div class='accordion-item'>
+        <h3 class='accordion-header'>
+          <button class='accordion-button collapsed' type='button' data-bs-toggle='collapse' data-bs-target='#collapseOne' aria-expanded='true' aria-controls='collapseOne'>
+            Staší úspěchy
+          </button>
+        </h3>
+        <div id='collapseOne' class='accordion-collapse collapse' data-bs-parent='#quake2SecondAchievements'>
+          <div id='quake2SecondContainerAchievements' class='accordion-body row'></div>
+        </div>
+      </div>
     </div>
     `}`;
     return this.innerHTML = template
@@ -47,7 +62,7 @@ export default class ElmQuake2Achievements extends HTMLElement {
   subinitElm(options) {
     let result = [];
 
-    for (let row of options.db) {
+    for (let row of options.db.reverse()) {
       let achievementId = parseInt(row.achievement_id);
       let achievementData = options.obj.ids[achievementId];
       let img = achievementData.img;
@@ -69,10 +84,21 @@ export default class ElmQuake2Achievements extends HTMLElement {
       result.push(template)
     };
 
-    return result.join("")
+    return result
   };
 
   updateInitElm(options) {
-    return this._achievements.innerHTML = this.subinitElm(options)
+    let head, tail;
+    let elements = this.subinitElm(options);
+
+    if (elements.length > 4) {
+      head = elements.slice(0, 4);
+      tail = elements.slice(4);
+      this._firstAchievements.innerHTML = head.join("");
+      this._secondContainerAchievements.innerHTML = tail.join("");
+      return this._secondAchievements.style.display = ""
+    } else {
+      return this._firstAchievements.innerHTML = elements.join("")
+    }
   }
 }
