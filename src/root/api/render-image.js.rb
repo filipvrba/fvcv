@@ -17,9 +17,10 @@ export default async def handler(req, res)
 
     image_buffer = await response.buffer()
 
-    res.set_header('Content-Type', response.headers.get('content-type'))
-    res.set_header('Cache-Control', 'public, max-age=3600')
-    return res.status(200).send(image_buffer)
+    content_type = response.headers.get('content-type')
+    base64_image = "data:#{content_type};base64,#{image_buffer.to_string('base64')}"
+
+    res.status(200).json({ base64: base64_image })
   rescue => error
     console.error('Error fetching image:', error)
     return res.status(500).json({ error: 'Internal server error' })

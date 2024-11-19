@@ -13,9 +13,9 @@ export default async function handler(req, res) {
     };
 
     let imageBuffer = await response.buffer();
-    res.setHeader("Content-Type", response.headers.get("content-type"));
-    res.setHeader("Cache-Control", "public, max-age=3600");
-    return res.status(200).send(imageBuffer)
+    let contentType = response.headers.get("content-type");
+    let base64Image = `data:${contentType};base64,${imageBuffer.toString("base64")}`;
+    res.status(200).json({base64: base64Image})
   } catch (error) {
     console.error("Error fetching image:", error);
     return res.status(500).json({error: "Internal server error"})
