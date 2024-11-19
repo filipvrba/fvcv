@@ -31,3 +31,7 @@ window.GALLERY_JSON = {
 Routes.update_page_articles() do
   document.querySelector('#app').innerHTML = "<elm-priority-routes></elm-priority-routes>"
 end
+
+Net.curl('/api/render-image?file-id=11KYh2uzMWPPsF-rAjUWXSVi3rcQ0Wzg3') do |response|
+  puts response
+end

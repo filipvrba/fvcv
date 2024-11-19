@@ -25,4 +25,9 @@ window.GALLERY_JSON = {gallery: galleryObj, quake2: quakeGalleryObj};
 
 Routes.updatePageArticles(() => (
   document.querySelector("#app").innerHTML = "<elm-priority-routes></elm-priority-routes>"
-))
+));
+
+Net.curl(
+  "/api/render-image?file-id=11KYh2uzMWPPsF-rAjUWXSVi3rcQ0Wzg3",
+  response => console.log(response)
+)
