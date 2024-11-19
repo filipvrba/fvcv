@@ -12,7 +12,6 @@ export default class ElmBlog < HTMLElement
             "images ON articles.image_id = images.id WHERE " +
             "articles.user_id = #{ElmAdmin::LOGIN_ID};"
     __bef_db.get(query) do |articles|
-
       init_elm(articles)
     end
   end
