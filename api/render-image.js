@@ -1,7 +1,7 @@
 import fetch from "node-fetch";
 
 export default async function handler(req, res) {
-  let fileId = req.query.fileId;
+  let fileId = req.query["file-id"];
   if (!fileId) return res.status(400).json({error: "File ID is required"});
 
   try {

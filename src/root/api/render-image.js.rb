@@ -1,7 +1,7 @@
 import 'fetch', 'node-fetch'
 
 export default async def handler(req, res)
-  file_id = req.query.file_id
+  file_id = req.query['file-id']
 
   unless file_id
     return res.status(400).json({ error: 'File ID is required' })
