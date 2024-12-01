@@ -85,6 +85,16 @@ end
 String.prototype.max_length = max_length
 
 def to_md()
+  str_md = self
+
+  self.gsub(/!\[.*?\]\((.*?)\)/) do |_, href|
+    if href =~ /^(?!https?:\/\/|\/).*/
+      Net.google_image(href) do |base64_image|
+        return base64_image
+      end
+    end
+  end
+
   options = {
     html: true,
     highlight: lambda do |str, lang|
@@ -100,7 +110,7 @@ def to_md()
     end
   }
   md = markdownit(options)
-  md.render(self)
+  md.render(str_md)
 end
 String.prototype.to_md = to_md
 
