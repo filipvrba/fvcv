@@ -51,6 +51,8 @@ export default class ElmRoutes < HTMLElement
       src = elm_img.get_attribute('src')
 
       if src =~ /^(?!https?:\/\/|\/).*/
+        elm_img.set_attribute('src', '/png/loading.gif')
+
         Net.google_image(src) do |base64_image|
           elm_img.src = base64_image
         end

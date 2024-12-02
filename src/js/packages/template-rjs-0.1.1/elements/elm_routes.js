@@ -51,6 +51,7 @@ export default class ElmRoutes extends HTMLElement {
       let src = elmImg.getAttribute("src");
 
       if (/^(?!https?:\/\/|\/).*/m.test(src)) {
+        elmImg.setAttribute("src", "/png/loading.gif");
         Net.googleImage(src, base64Image => elmImg.src = base64Image)
       }
     }
