@@ -79,14 +79,6 @@ function maxLength(length=120) {
 String.prototype.maxLength = maxLength;
 
 function toMd() {
-  let strMd = this;
-
-  this.replaceAll(/!\[.*?\]\((.*?)\)/g, (_, href) => {
-    if (/^(?!https?:\/\/|\/).*/m.test(href)) {
-      return Net.googleImage(href, base64Image => base64Image)
-    }
-  });
-
   let options = {html: true, highlight(str, lang) {
     if (lang && hljs.getLanguage(lang)) {
       try {
@@ -100,7 +92,7 @@ function toMd() {
   }};
 
   let md = markdownit(options);
-  return md.render(strMd)
+  return md.render(this)
 };
 
 String.prototype.toMd = toMd;

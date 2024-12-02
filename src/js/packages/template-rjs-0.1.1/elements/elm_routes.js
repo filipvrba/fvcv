@@ -40,7 +40,20 @@ export default class ElmRoutes extends HTMLElement {
     this.initMeta(page);
     let pageName = page.endpoint.replaceAll("-", "_");
     let content = PAGES[pageName];
-    return this.initElm(content, page)
+    this.initElm(content, page);
+    return this.updateImgs()
+  };
+
+  updateImgs() {
+    let elmImgs = this.querySelectorAll("img");
+
+    for (let elmImg of elmImgs) {
+      let src = elmImg.getAttribute("src");
+
+      if (/^(?!https?:\/\/|\/).*/m.test(src)) {
+        Net.googleImage(src, base64Image => elmImg.src = base64Image)
+      }
+    }
   };
 
   initElm(content, page=null) {

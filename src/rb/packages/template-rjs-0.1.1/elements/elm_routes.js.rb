@@ -40,6 +40,22 @@ export default class ElmRoutes < HTMLElement
     page_name = page.endpoint.gsub('-', '_')
     content = PAGES[page_name]
     init_elm(content, page)
+
+    update_imgs()
+  end
+
+  def update_imgs()
+    elm_imgs = self.query_selector_all('img')
+
+    elm_imgs.each do |elm_img|
+      src = elm_img.get_attribute('src')
+
+      if src =~ /^(?!https?:\/\/|\/).*/
+        Net.google_image(src) do |base64_image|
+          elm_img.src = base64_image
+        end
+      end
+    end
   end
 
   def init_elm(content, page = nil)
